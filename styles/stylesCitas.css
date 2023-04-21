@@ -1,0 +1,71 @@
+body {
+  font-family: 'Hanken Grotesk', sans-serif;
+  background-color: #ebf4ff;
+}
+
+.animate__fadeIn {
+  animation-duration: 2s;
+}
+
+header {
+  background-color: #3f51b5;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 50px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  margin: 25px 50px;
+  font-size: 24px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+a:hover{
+  background: #ebf4ff;
+  color: #3f51b5;
+  transition: .5s;
+}
+
+table {
+  width: 60%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  margin: 0 auto;
+}
+
+th,
+td {
+  border: 1px solid #3f51b5;
+  padding: 0.5em;
+  text-align: justify;
+}
+
+th {
+  background-color: #3f51b5;
+  color: white;
+}
+
+button, input {
+  padding: 10px 20px;
+  background-color: #3f51b5;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  align-content: center;
+  margin: auto;
+  margin-top: 1em;
+  display: block;
+}
+
+
