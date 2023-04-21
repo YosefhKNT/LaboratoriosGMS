@@ -46,7 +46,7 @@ if (isset($_POST['AgendarCita'])) {
             $_SESSION['folio'] = $row['id'];
             header("Location: infoCitas.php");
         } else {
-            echo "Error al acceder a la cita";
+            echo "Se ha genrado un error al acceder a la cita";
         }
     } else {
         // Error al agendar la cita
