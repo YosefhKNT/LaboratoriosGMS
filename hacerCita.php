@@ -107,8 +107,13 @@ if (isset($_POST['AgendarCita'])) {
                 <input type="tel" id="telefono" name="telefono" placeholder="123-456-7890" required>
 
                 <label for="fecha">Fecha:</label>
-                <input type="date" id="fechaCita" name="fechaCita" oninput="checkdate()" required>
+                <input type="date" id="fechaCita" name="fechaCita" oninput="usarTodo()" required>
                 <script>
+                    function usarTodo() {
+                        checkdate();
+                        getCitas();
+                    }
+
                     function checkdate() {
                         var selectedDate = new Date(document.getElementById("fechaCita").value);
                         var tomorrow = new Date();
@@ -121,12 +126,40 @@ if (isset($_POST['AgendarCita'])) {
                             document.getElementById("fechaCita").value = "";
                         }
                     }
+
+                    function obtenerFecha() {
+                        // Esta función se llama cada vez que se cambia la fecha en el input
+                        var fechaCita = document.getElementById("fechaCita").value;
+                        // Guardamos la fecha en una variable
+                        return fechaCita;
+                    }
+
+                    function getCitas() {
+                        // Esta función se llama cuando se hace clic en el botón "Obtener citas"
+                        var fechaCita = obtenerFecha();
+                        // Obtenemos la fecha del input
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function() {
+                            if (this.readyState == 4 && this.status == 200) {
+                                // Aquí puedes hacer algo con la respuesta del servidor
+                                document.getElementById("citas").innerHTML = this.responseText;
+                            }
+                        };
+                        xhttp.open("POST", "", true);
+                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        // Enviamos la fecha al servidor a través de una solicitud HTTP POST
+                        xhttp.send("fecha=" + fechaCita);
+                    }
                 </script>
 
                 <?php
                 ///////////////////////////////////// - HORAS - /////////////////////////////////////////////
-                $fecha_seleccionada = 
-                $query = "SELECT hora FROM citas where fecha = '2023-04-25' ";
+                $fecha_seleccionada = '2023-04-27';
+                // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                //     // Si la solicitud es una solicitud HTTP POST, ejecutamos la consulta SQL
+                //     $fecha = $_POST['fecha'];
+                // }
+                $query = "SELECT hora FROM citas where fecha = '$fecha_seleccionada' ";
                 $result = mysqli_query($conn, $query);
                 // Crear un arreglo para almacenar las horas ya agendadas
                 $horas_agendadas = array();
@@ -137,8 +170,6 @@ if (isset($_POST['AgendarCita'])) {
                         $horas_agendadas[] = $row["hora"];
                     }
                 }
-                echo $horas_agendadas[0];
-                echo '<br>';
                 // Mostrar las opciones del selector de hora, omitiendo las horas ya agendadas
                 echo '<label for="hora">Hora: (7:00 am - 4:00 pm)</label>';
                 echo '<select id="horaCita" name="horaCita">';
@@ -155,8 +186,9 @@ if (isset($_POST['AgendarCita'])) {
                     $hora->add(new DateInterval("PT20M")); // Agregar 20 minutos al tiempo actual
                 }
                 echo '</select>';
+
                 ?>
-<!-- 
+                <!-- 
                 <label for="hora">Hora: (7:00 am - 4:00 pm)</label>
                 <select id="horaCita" name="horaCita"></select>
 
