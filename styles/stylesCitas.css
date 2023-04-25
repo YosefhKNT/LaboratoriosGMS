@@ -29,14 +29,14 @@ a {
   border-radius: 5px;
 }
 
-a:hover{
+a:hover {
   background: #ebf4ff;
   color: #3f51b5;
   transition: .5s;
 }
 
 table {
-  width: 60%;
+  width: 75%;
   border-collapse: collapse;
   margin-top: 1em;
   margin: 0 auto;
@@ -52,9 +52,11 @@ td {
 th {
   background-color: #3f51b5;
   color: white;
+  text-align: center;
 }
 
-button, input {
+button,
+input {
   padding: 10px 20px;
   background-color: #3f51b5;
   color: white;
@@ -67,5 +69,3 @@ button, input {
   margin-top: 1em;
   display: block;
 }
-
-

@@ -6,7 +6,7 @@ session_unset();
 session_destroy();
 
 // Redirigir a la página de inicio de sesión
-header("Location: consultaCyR.php");
+header("Location: index.php");
 exit();
 
 ?>

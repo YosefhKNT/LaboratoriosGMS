@@ -1,23 +1,14 @@
 <?php
 ob_start();
 // Conexión a la base de datos
-$host     = "localhost";
-$username = "root";
-$password = "";
-$dbname   = "laboratorio";
-
-$conn = mysqli_connect($host, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Fallo en la conexión: " . mysqli_connect_error());
-}
+require 'conexion.php';
 
 if (isset($_POST['AgendarCita'])) {
     // Verificación de los datos de la cita
     $nombre = $_POST['nombre'];
     $telefono = $_POST['telefono'];
-    $fecha = $_POST['fecha'];
-    $hora = $_POST['hora'];
+    $fecha = $_POST['fechaCita'];
+    $hora = $_POST['horaCita'];
     $estudio = $_POST['estudio'];
     $laboratorista = $_POST['laboratorista'];
 
@@ -132,6 +123,40 @@ if (isset($_POST['AgendarCita'])) {
                     }
                 </script>
 
+                <?php
+                ///////////////////////////////////// - HORAS - /////////////////////////////////////////////
+                $fecha_seleccionada = 
+                $query = "SELECT hora FROM citas where fecha = '2023-04-25' ";
+                $result = mysqli_query($conn, $query);
+                // Crear un arreglo para almacenar las horas ya agendadas
+                $horas_agendadas = array();
+
+                if (mysqli_num_rows($result) > 0) {
+                    // Almacenar las horas ya agendadas en el arreglo
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $horas_agendadas[] = $row["hora"];
+                    }
+                }
+                echo $horas_agendadas[0];
+                echo '<br>';
+                // Mostrar las opciones del selector de hora, omitiendo las horas ya agendadas
+                echo '<label for="hora">Hora: (7:00 am - 4:00 pm)</label>';
+                echo '<select id="horaCita" name="horaCita">';
+                $hora = new DateTime();
+                $hora->setTime(7, 0, 0); // Establecer la hora inicial a las 7:00 AM
+
+                while ($hora->format("H:i:s") < "16:00:00") { // Agregar opciones hasta las 4:00 PM
+                    $hora_texto = $hora->format("H:i:s");
+
+                    if (!in_array($hora_texto, $horas_agendadas)) { // Omitir las horas ya agendadas
+                        echo '<option value="' . $hora_texto . '">' . $hora_texto . '</option>';
+                    }
+
+                    $hora->add(new DateInterval("PT20M")); // Agregar 20 minutos al tiempo actual
+                }
+                echo '</select>';
+                ?>
+<!-- 
                 <label for="hora">Hora: (7:00 am - 4:00 pm)</label>
                 <select id="horaCita" name="horaCita"></select>
 
@@ -151,7 +176,7 @@ if (isset($_POST['AgendarCita'])) {
                         select.add(option);
                         hora.setMinutes(hora.getMinutes() + 20); // Agregar 20 minutos al tiempo actual
                     }
-                </script>
+                </script> -->
 
                 <!-- 
                 <input type="time" id="hora" name="hora" value="07:00" min="07:00" max="19:00" step="1200" required>

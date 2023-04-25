@@ -4,21 +4,12 @@ require('tcpdf\fpdf.php');
 session_start();
 
 if (!isset($_SESSION['folio'])) {
-    header("Location: consultaCyR.php");
+    header("Location: consultarCita.php");
 }
 
 $folio = $_SESSION['folio'];
 // Conexión a la base de datos
-$host = "localhost";
-$username = "root";
-$password = "";
-$dbname = "laboratorio";
-
-$conn = mysqli_connect($host, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Fallo en la conexión: " . mysqli_connect_error());
-}
+require 'conexion.php';
 
 $query_join = "SELECT citas.id as id, citas.nombre as nombre, 
         citas.fecha as fecha, citas.hora as hora, 
@@ -83,6 +74,7 @@ if ($result->num_rows > 0) {
             <thead>
                 <tr>
                     <th>Folio</th>
+                    <th>Clave</th>
                     <th>Nombre del paciente</th>
                     <th>Telefono</th>
                     <th>Fecha</th>
@@ -95,22 +87,24 @@ if ($result->num_rows > 0) {
                 <?php
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
-                    echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['nombre'] . "</td>";
-                    echo "<td>" . $row['telefono'] . "</td>";
-                    echo "<td>" . $row['fecha'] . "</td>";
-                    echo "<td>" . $row['hora'] . "</td>";
-                    echo "<td>" . $row['area'] . "</td>";
-                    echo "<td>" . $row['estudio'] . "</td>";
+                    echo "<td><center>" . $row['id'] . "</center></td>";
+                    echo "<td><center>" . $row['clave'] . "</center></td>";
+                    echo "<td><center>" . $row['nombre'] . "</center></td>";
+                    echo "<td><center>" . $row['telefono'] . "</center></td>";
+                    echo "<td><center>" . $row['fecha'] . "</center></td>";
+                    echo "<td><center>" . $row['hora'] . "</center></td>";
+                    echo "<td><center>" . $row['area'] . "</center></td>";
+                    echo "<td><center>" . $row['estudio'] . "</center></td>";
                     echo "</tr>";
                     echo "<tr>";
-                    echo "<td colspan='7'> <b>Laboratorista: </b>" . $row['laboratorista'] . "</td>";
+                    echo "<td colspan='8'> <b>Resultados: </b></td>";
                     echo "</tr>";
                     echo "<tr>";
-                    echo "<td colspan='7'>" . $row['resultados'] . "</td>";
+                    echo "<td colspan='8'>" . $row['resultados'] . "</td>";
                     echo "</tr>";
 
                     $folio = $row['id'];
+                    $clave = $row['clave'];
                     $nombre = $row['nombre'];
                     $fecha = $row['fecha'];
                     $hora = $row['hora'];
@@ -165,8 +159,9 @@ if ($result->num_rows > 0) {
         <h1>Citas</h1>
         <table>
             <thead>
-                <tr>
+                <tr class="">
                     <th>Folio</th>
+                    <th>Clave</th>
                     <th>Nombre del paciente</th>
                     <th>Telefono</th>
                     <th>Fecha</th>
@@ -179,29 +174,28 @@ if ($result->num_rows > 0) {
                 <?php
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
-                    echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['nombre'] . "</td>";
-                    echo "<td>" . $row['telefono'] . "</td>";
-                    echo "<td>" . $row['fecha'] . "</td>";
-                    echo "<td>" . $row['hora'] . "</td>";
-                    echo "<td>" . $row['area'] . "</td>";
-                    echo "<td>" . $row['estudio'] . "</td>";
+                    echo "<td><center>" . $row['id'] . "</center></td>";
+                    echo "<td><center>" . $row['clave'] . "</center></td>";
+                    echo "<td><center>" . $row['nombre'] . "</center></td>";
+                    echo "<td><center>" . $row['telefono'] . "</center></td>";
+                    echo "<td><center>" . $row['fecha'] . "</center></td>";
+                    echo "<td><center>" . $row['hora'] . "</center></td>";
+                    echo "<td><center>" . $row['area'] . "</center></td>";
+                    echo "<td><center>" . $row['estudio'] . "</center></td>";
                     echo "</tr>";
                     echo "<tr>";
-                    echo "<td colspan='7'> <b>Laboratorista: </b>" . $row['laboratorista'] . "</td>";
-                    echo "</tr>";
-                    echo "<tr>";
-                    echo "<td colspan='7'> Sin Resultados</td>";
+                    echo "<td colspan='8'> <b>Resultados: </b>Sin Resultados</td>";
                     echo "</tr>";
 
                     $folio = $row['id'];
+                    $clave = $row['clave'];
                     $nombre = $row['nombre'];
                     $fecha = $row['fecha'];
                     $hora = $row['hora'];
                     $telefo = $row['telefono'];
                     $area = $row['area'];
                     $estudio = $row['estudio'];
-                    //$resultados = $row['resultados'];
+                    $resultados = 'Sin Resultados.';
                 }
                 ?>
             </tbody>
@@ -233,6 +227,14 @@ if (isset($_POST['download'])) {
     $pdf->SetFont('FreeSans', '', 12);
     $pdf->SetXY(40, 20);
     $pdf->Cell(0, 10, $folio, 0, 0);
+
+    $pdf->SetXY(158, 20);
+    $pdf->SetFont('FreeSans', 'B', 12);
+    $pdf->Cell(0, 10, 'Clave:', 0, 0);
+    $pdf->SetFont('FreeSans', '', 12);
+    $pdf->SetXY(178, 20);
+    $pdf->Cell(0, 10, $clave, 0, 0);
+
     $pdf->SetXY(10, 40);
     $pdf->SetFont('FreeSans', 'B', 12);
     $pdf->Cell(0, 10, 'Nombre del paciente:', 0, 0);
