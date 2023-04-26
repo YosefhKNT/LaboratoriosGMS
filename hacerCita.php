@@ -111,7 +111,7 @@ if (isset($_POST['AgendarCita'])) {
                 <script>
                     function usarTodo() {
                         checkdate();
-                        getCitas();
+                        buscarHoras();
                     }
 
                     function checkdate() {
@@ -127,139 +127,171 @@ if (isset($_POST['AgendarCita'])) {
                         }
                     }
 
-                    function obtenerFecha() {
-                        // Esta función se llama cada vez que se cambia la fecha en el input
-                        var fechaCita = document.getElementById("fechaCita").value;
-                        // Guardamos la fecha en una variable
-                        return fechaCita;
-                    }
+                    function buscarHoras() {
+                        var fechaSeleccionada = document.getElementById("fechaCita").value;
+                        // Si el fechaSeleccionada seleccionado es válido, se envía una solicitud AJAX al servidor
+                        if (fechaSeleccionada) {
+                            var xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = function() {
+                                if (this.readyState == 4 && this.status == 200) {
+                                    // Convertir la respuesta JSON en un arreglo de horas
+                                    var horas = JSON.parse(this.responseText);
 
-                    function getCitas() {
-                        // Esta función se llama cuando se hace clic en el botón "Obtener citas"
-                        var fechaCita = obtenerFecha();
-                        // Obtenemos la fecha del input
-                        var xhttp = new XMLHttpRequest();
-                        xhttp.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                                // Aquí puedes hacer algo con la respuesta del servidor
-                                document.getElementById("citas").innerHTML = this.responseText;
-                            }
-                        };
-                        xhttp.open("POST", "", true);
-                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                        // Enviamos la fecha al servidor a través de una solicitud HTTP POST
-                        xhttp.send("fecha=" + fechaCita);
-                    }
-                </script>
+                                    // Obtener las horas de 7am a 4pm
+                                    var horasMostrar = [];
+                                    for (var hora = 7; hora <= 16; hora++) {
+                                        for (var minuto = 0; minuto < 60; minuto += 20) {
+                                            // Construir la hora en formato HH:mm:ss
+                                            var horaMostrar = hora < 10 ? '0' + hora : hora;
+                                            var minutoMostrar = minuto < 10 ? '0' + minuto : minuto;
+                                            var horaCompleta = horaMostrar + ':' + minutoMostrar + ':00';
 
-                <?php
-                ///////////////////////////////////// - HORAS - /////////////////////////////////////////////
-                $fecha_seleccionada = '2023-04-27';
-                // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                //     // Si la solicitud es una solicitud HTTP POST, ejecutamos la consulta SQL
-                //     $fecha = $_POST['fecha'];
-                // }
-                $query = "SELECT hora FROM citas where fecha = '$fecha_seleccionada' ";
-                $result = mysqli_query($conn, $query);
-                // Crear un arreglo para almacenar las horas ya agendadas
-                $horas_agendadas = array();
+                                            // Agregar la hora a la lista si no está en la lista de horas obtenidas
+                                            var horaExiste = false;
+                                            for (var i = 0; i < horas.length; i++) {
+                                                if (horas[i].substring(0, 5) === horaCompleta.substring(0, 5)) {
+                                                    horaExiste = true;
+                                                    break;
+                                                }
+                                            }
+                                            if (!horaExiste) {
+                                                horasMostrar.push(horaCompleta);
+                                            }
+                                        }
+                                    }
 
-                if (mysqli_num_rows($result) > 0) {
-                    // Almacenar las horas ya agendadas en el arreglo
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $horas_agendadas[] = $row["hora"];
-                    }
-                }
-                // Mostrar las opciones del selector de hora, omitiendo las horas ya agendadas
-                echo '<label for="hora">Hora: (7:00 am - 4:00 pm)</label>';
-                echo '<select id="horaCita" name="horaCita">';
-                $hora = new DateTime();
-                $hora->setTime(7, 0, 0); // Establecer la hora inicial a las 7:00 AM
+                                    // Actualizar las horas obtenidas de la consulta con las horas de 7am a 4pm menos las horas obtenidas
+                                    horas = horasMostrar;
 
-                while ($hora->format("H:i:s") < "16:00:00") { // Agregar opciones hasta las 4:00 PM
-                    $hora_texto = $hora->format("H:i:s");
+                                    // Obtener el elemento select
+                                    var selectHoras = document.getElementById("horaCita");
 
-                    if (!in_array($hora_texto, $horas_agendadas)) { // Omitir las horas ya agendadas
-                        echo '<option value="' . $hora_texto . '">' . $hora_texto . '</option>';
-                    }
+                                    // Eliminar todas las opciones del select
+                                    selectHoras.innerHTML = "";
 
-                    $hora->add(new DateInterval("PT20M")); // Agregar 20 minutos al tiempo actual
-                }
-                echo '</select>';
+                                    if (horas.length > 0) {
+                                        // Agregar una opción por cada hora
+                                        for (var i = 0; i < horas.length; i++) {
+                                            var option = document.createElement("option");
+                                            option.value = horas[i];
+                                            option.text = horas[i];
+                                            selectHoras.appendChild(option);
+                                        }
+                                    } else {
+                                        // Si no hay horas disponibles, mostrar un mensaje
+                                        var option = document.createElement("option");
+                                        option.value = "";
+                                        option.text = "No hay horas disponibles para esta fecha";
+                                        selectHoras.appendChild(option);
+                                    }
+                                } else {
+                                    var horasMostrar = [];
+                                    for (var hora = 7; hora <= 16; hora++) {
+                                        for (var minuto = 0; minuto < 60; minuto += 20) {
+                                            // Construir la hora en formato HH:mm:ss
+                                            var horaMostrar = hora < 10 ? '0' + hora : hora;
+                                            var minutoMostrar = minuto < 10 ? '0' + minuto : minuto;
+                                            var horaCompleta = horaMostrar + ':' + minutoMostrar + ':00';
+                                            horasMostrar.push(horaCompleta);
+                                        }
+                                    }
 
-                ?>
-                <!-- 
-                <label for="hora">Hora: (7:00 am - 4:00 pm)</label>
-                <select id="horaCita" name="horaCita"></select>
+                                    // Actualizar las horas obtenidas de la consulta con las horas de 7am a 4pm
+                                    var horas = horasMostrar;
 
-                <script>
-                    var select = document.getElementById("horaCita");
-                    var hora = new Date();
-                    hora.setHours(7, 0, 0, 0); // Establecer la hora inicial a las 7:00 AM
+                                    // Obtener el elemento select
+                                    var selectHoras = document.getElementById("horaCita");
 
-                    while (hora.getHours() < 16) { // Agregar opciones hasta las 4:00 PM
-                        var option = document.createElement("option");
-                        var horaTexto = hora.toLocaleTimeString([], {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        });
-                        option.text = horaTexto;
-                        option.value = horaTexto;
-                        select.add(option);
-                        hora.setMinutes(hora.getMinutes() + 20); // Agregar 20 minutos al tiempo actual
-                    }
-                </script> -->
+                                    // Eliminar todas las opciones del select
+                                    selectHoras.innerHTML = "";
 
-                <!-- 
-                <input type="time" id="hora" name="hora" value="07:00" min="07:00" max="19:00" step="1200" required>
-
-                <script>
-                    // selecciona el elemento input
-                    const input = document.querySelector('input[type="time"]');
-
-                    // establece el valor inicial del input
-                    let value = "07:00";
-
-                    // establece el intervalo de tiempo en minutos
-                    const interval = 20;
-
-                    // función para restringir las horas seleccionables a partir de las 7:00 AM y hasta las 7:00 PM
-                    function restrictTimeInput() {
-                        const time = input.value.split(":");
-                        const hours = parseInt(time[0], 10);
-                        if (hours < 7) {
-                            input.value = `07:00`;
-                        } else if (hours >= 16) {
-                            input.value = `16:00`;
+                                    // Agregar una opción por cada hora
+                                    for (var i = 0; i < horas.length; i++) {
+                                        var option = document.createElement("option");
+                                        option.value = horas[i];
+                                        option.text = horas[i];
+                                        selectHoras.appendChild(option);
+                                    }
+                                }
+                            };
+                            xmlhttp.open("GET", "buscar_horas.php?estudio=" + fechaSeleccionada, true);
+                            xmlhttp.send();
+                        } else {
+                            // limpia el select de fechaCita
+                            document.getElementById("fechaCita").value = "";
                         }
                     }
 
-                    // agrega un listener para detectar cambios en el input
-                    input.addEventListener("input", () => {
-                        // actualiza el valor del input con el valor más cercano en incrementos de interval
-                        const time = input.value.split(":");
-                        const minutes = parseInt(time[0], 10) * 60 + parseInt(time[1], 10);
-                        const roundedMinutes = Math.round(minutes / interval) * interval;
-                        const hours = Math.floor(roundedMinutes / 60);
-                        const formattedMinutes = (roundedMinutes % 60).toString().padStart(2, "0");
-                        input.value = `${hours.toString().padStart(2, "0")}:${formattedMinutes}`;
+                    //Funcion que muestra las horas de la BD
+                    // function buscarHoras() {
+                    //     var fechaSeleccionada = document.getElementById("fechaCita").value;
 
-                        // restringe las horas seleccionables
-                        restrictTimeInput();
-                    });
+                    //     // Si el fechaSeleccionada seleccionado es válido, se envía una solicitud AJAX al servidor
+                    //     if (fechaSeleccionada) {
+                    //         var xmlhttp = new XMLHttpRequest();
+                    //         xmlhttp.onreadystatechange = function() {
+                    //             if (this.readyState == 4 && this.status == 200) {
+                    //                 // Convertir la respuesta JSON en un arreglo de horas
+                    //                 var horas = JSON.parse(this.responseText);
 
-                    // establece el valor inicial del input con incrementos de interval
-                    const time = value.split(":");
-                    const minutes = parseInt(time[0], 10) * 60 + parseInt(time[1], 10);
-                    const roundedMinutes = Math.round(minutes / interval) * interval;
-                    const hours = Math.floor(roundedMinutes / 60);
-                    const formattedMinutes = (roundedMinutes % 60).toString().padStart(2, "0");
-                    input.value = `${hours.toString().padStart(2, "0")}:${formattedMinutes}`;
+                    //                 // Obtener el elemento select
+                    //                 var selectHoras = document.getElementById("horaCita");
 
-                    // restringe las horas seleccionables
-                    restrictTimeInput();
+                    //                 // Eliminar todas las opciones del select
+                    //                 selectHoras.innerHTML = "";
+
+                    //                 // Agregar una opción por cada hora obtenida
+                    //                 for (var i = 0; i < horas.length; i++) {
+                    //                     var option = document.createElement("option");
+                    //                     option.value = horas[i];
+                    //                     option.text = horas[i];
+                    //                     selectHoras.appendChild(option);
+                    //                 }
+                    //             }
+                    //         };
+                    //         xmlhttp.open("GET", "buscar_horas.php?estudio=" + fechaSeleccionada, true);
+                    //         xmlhttp.send();
+                    //     } else {
+                    //         document.getElementById("fechaCita").value = "";
+                    //     }
+                    // }
+
+                    // function buscarHoras() {
+                    //     var fechaSeleccionada = document.getElementById("fechaCita").value;
+
+                    //     // Si el fechaSeleccionada seleccionado es válido, se envía una solicitud AJAX al servidor
+                    //     if (fechaSeleccionada) {
+                    //         var xmlhttp = new XMLHttpRequest();
+                    //         xmlhttp.onreadystatechange = function() {
+                    //             if (this.readyState == 4 && this.status == 200) {
+                    //                 // Convertir la respuesta JSON en un arreglo de horas
+                    //                 var horas = JSON.parse(this.responseText);
+
+                    //                 // Obtener el elemento select
+                    //                 var selectHoras = document.getElementById("horaCita");
+
+                    //                 // Eliminar todas las opciones del select
+                    //                 selectHoras.innerHTML = "";
+
+                    //                 // Agregar una opción por cada hora obtenida
+                    //                 for (var i = 0; i < horas.length; i++) {
+                    //                     var option = document.createElement("option");
+                    //                     option.value = horas[i];
+                    //                     option.text = horas[i];
+                    //                     selectHoras.appendChild(option);
+                    //                 }
+                    //             }
+                    //         };
+                    //         xmlhttp.open("GET", "buscar_horas.php?estudio=" + fechaSeleccionada, true);
+                    //         xmlhttp.send();
+                    //     } else {
+                    //         document.getElementById("fechaCita").value = "";
+                    //     }
+                    // }
                 </script>
-                -->
+                <label for="hora">Hora: (7:00 am - 4:00 pm)</label>
+                <select id="horaCita" name="horaCita"></select>
+
                 <label for="estudio">Estudio:</label>
                 <select id="estudio" name="estudio" onchange="buscarLaboratorista()" required>
                     <option value="" selected>Seleccione un Estudio</option>
