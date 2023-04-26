@@ -83,9 +83,6 @@ if (isset($_POST['ConsultarCita'])) {
                 <input type="password" name="clave" placeholder="Clave">
                 <input type="submit" name="ConsultarCita" value="Buscar cita">
             </form>
-            <!-- <div class="contenedor-imagen">
-                <img src="Images\labwall.jpg" alt="imagen">
-            </div> -->
 
         </div>
 
