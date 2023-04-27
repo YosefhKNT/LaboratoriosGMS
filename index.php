@@ -32,58 +32,44 @@
       <i class="fas fa-bars"></i>
     </label>
     <a href="index.php" class="enlace">
-      <img class="img_logo_gms" src="Images\GMS-Logo.png" alt="GMS-Logo">
+      <img class="img_logo_gms" src="Images/GMS-Logo.png" alt="GMS-Logo">
     </a>
     <ul>
       <li><a href="index.php">Inicio</a></li>
-      <li><a href="index.php">Estudios</a></li>
+      <li><a href="archives/estudios.php">Estudios</a></li>
       <li><a href="index.php">Sucursales</a></li>
       <li><a href="index.php">Covid 19</a></li>
-      <li><a href="hacerCita.php">Agenda una cita</a></li>
-      <li><a href="consultaCita.php">Consulta tu cita</a></li>
+      <li><a href="archives/hacerCita.php">Agenda una cita</a></li>
+      <li><a href="archives/consultaCita.php">Consulta tu cita</a></li>
     </ul>
   </nav>
-
   <div class="container" onload="document.body.classList.add('animate__animated', 'animate__fadeInDown');">
     <div class="box">
       <img src="https://via.placeholder.com/400x200" alt="Imagen 1" />
-      <h2>Titulo 1</h2>
+      <h2>Estudio de diagnóstico de enfermedades infecciosas</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        vulputate libero nec est lacinia consequat. Sed maximus pharetra urna,
-        eget commodo nulla tincidunt vel. Fusce nec enim ex. Integer bibendum
-        quis dolor eget blandit. Sed in tellus sem. Nunc molestie nisi at arcu
-        euismod, a fringilla mauris finibus.
+        Nuestro laboratorio clínico ofrece estudios de diagnóstico de enfermedades infecciosas mediante pruebas de PCR y cultivo microbiológico. Contamos con un equipo altamente capacitado y tecnología de vanguardia para garantizar resultados precisos y confiables en el menor tiempo posible.
       </p>
     </div>
     <div class="box">
       <img src="https://via.placeholder.com/400x200" alt="Imagen 2" />
-      <h2>Titulo 2</h2>
+      <h2>Estudio de perfil lipídico</h2>
       <p>
-        Curabitur blandit nisl euismod libero eleifend, quis laoreet risus
-        suscipit. Aliquam erat volutpat. Nullam dignissim posuere ex eu
-        dignissim. Etiam auctor, velit in dapibus venenatis, mi augue viverra
-        leo, ut congue augue lectus in lacus.
+        El estudio de perfil lipídico es una herramienta importante para la evaluación del riesgo cardiovascular. En nuestro laboratorio clínico ofrecemos este estudio que incluye la medición de los niveles de colesterol total, colesterol HDL, colesterol LDL y triglicéridos. Los resultados son interpretados por médicos especialistas y entregados al paciente en un informe completo.
       </p>
     </div>
     <div class="box">
       <img src="https://via.placeholder.com/400x200" alt="Imagen 3" />
-      <h2>Titulo 3</h2>
+      <h2>Estudio de función hepática</h2>
       <p>
-        Donec sagittis libero non erat ullamcorper, in viverra felis dictum.
-        Mauris dapibus, nibh sed ullamcorper rhoncus, dui libero fringilla
-        dolor, vel auctor enim velit eu enim. Pellentesque id nunc non leo
-        consectetur egestas.
+        El estudio de función hepática es un conjunto de pruebas que evalúan el funcionamiento del hígado. En nuestro laboratorio clínico ofrecemos este estudio que incluye la medición de enzimas hepáticas, bilirrubina y proteínas. Los resultados son interpretados por médicos especialistas y entregados al paciente en un informe completo.
       </p>
     </div>
     <div class="box">
       <img src="https://via.placeholder.com/400x200" alt="Imagen 4" />
-      <h2>Titulo 4</h2>
+      <h2>Estudio de detección de drogas en orina</h2>
       <p>
-        Proin lacinia imperdiet enim, vel lacinia elit aliquam eu. Phasellus
-        id enim nisi. Nulla vel neque in enim sagittis vulputate a id elit.
-        Curabitur consequat vel risus ac blandit. Aliquam ac felis quis risus
-        malesuada suscipit. Nam a convallis nulla.
+        Nuestro laboratorio clínico ofrece un estudio de detección de drogas en orina para empresas y particulares. Realizamos pruebas de detección de una amplia gama de drogas incluyendo cocaína, marihuana, anfetaminas y opiáceos. Los resultados son entregados de manera confidencial al solicitante.
       </p>
     </div>
   </div>

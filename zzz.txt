@@ -1,0 +1,115 @@
+Hemoglobina
+Recuento de plaquetas
+Recuento de glóbulos blancos
+Recuento de glóbulos rojos
+Coagulación
+Cultivo de orina
+Cultivo de heces
+Cultivo de sangre
+Cultivo de secreción vaginal
+Cultivo de líquido cefalorraquídeo
+Anticuerpos antinucleares
+Antígeno prostático específico
+Prueba de embarazo
+Prueba de VIH
+Prueba de hepatitis B
+Glucosa en sangre
+Colesterol total
+Triglicéridos
+Ácido úrico
+Creatinina
+Secuenciación de ADN
+PCR
+Microarrays
+Southern blot
+Northern blot
+
+
+//////////////////////////77
+$query_join = "SELECT citas.id as id, 
+                citas.nombre as nombre, 
+                citas.fecha as fecha, 
+                citas.hora as hora, 
+                citas.telefono as telefono, 
+                citas.clave as clave, 
+                resultados.resultados as resultados, 
+                estudio.estudio as estudio, 
+                area.area as area, 
+                laboratorista.nombre as laboratorista 
+                FROM citas 
+                INNER JOIN estudio ON citas.estudio_id = estudio.id 
+                INNER JOIN area ON estudio.area_id = area.id 
+                INNER JOIN laboratorista ON citas.laboratorista_id = laboratorista.id 
+                LEFT JOIN resultados ON citas.resultados_id = resultados.id 
+                WHERE citas.id = '$folio';";
+
+            $resultQJ = mysqli_query($conn, $query_join);
+
+            while ($fila = mysqli_fetch_assoc($resultQJ)) {
+                $folio = $fila['id'];
+                $clave = $fila['clave'];
+                $nombre = $fila['nombre'];
+                $fecha = $fila['fecha'];
+                $hora = $fila['hora'];
+                $telefo = $fila['telefono'];
+                $area = $fila['area'];
+                $estudio = $fila['estudio'];
+                $resultados = $fila['resultados'];
+
+                ob_clean();
+                require('../TCPDF-main/tcpdf.php');
+
+                $pdf = new TCPDF();
+                $pdf->AddPage();
+                $pdf->SetFont('FreeSans', 'B', 16);
+                $pdf->Cell(0, 10, 'Cita Médica', 0, 1, 'C');
+                $pdf->Line(10, 30, 200, 30);
+                $pdf->Rect(10, 40, 190, 240);
+                $pdf->SetFont('FreeSans', 'B', 12);
+                $pdf->Cell(0, 10, 'Folio:', 0, 0);
+                $pdf->SetFont('FreeSans', '', 12);
+                $pdf->SetXY(40, 20);
+                $pdf->Cell(0, 10, $folio, 0, 0);
+
+                $pdf->SetXY(158, 20);
+                $pdf->SetFont('FreeSans', 'B', 12);
+                $pdf->Cell(0, 10, 'Clave:', 0, 0);
+                $pdf->SetFont('FreeSans', '', 12);
+                $pdf->SetXY(178, 20);
+                $pdf->Cell(0, 10, $clave, 0, 0);
+
+                $pdf->SetXY(10, 40);
+                $pdf->SetFont('FreeSans', 'B', 12);
+                $pdf->Cell(0, 10, 'Nombre del paciente:', 0, 0);
+                $pdf->SetFont('FreeSans', '', 12);
+                $pdf->SetXY(60, 40);
+                $pdf->Cell(0, 10, $nombre, 0, 1);
+                $pdf->SetFont('FreeSans', 'B', 12);
+                $pdf->Cell(0, 10, 'Fecha:', 0, 0);
+                $pdf->SetFont('FreeSans', '', 12);
+                $pdf->SetXY(60, 50);
+                $pdf->Cell(0, 10, $fecha, 0, 1);
+                $pdf->SetFont('FreeSans', 'B', 12);
+                $pdf->Cell(0, 10, 'Hora:', 0, 0);
+                $pdf->SetFont('FreeSans', '', 12);
+                $pdf->SetXY(60, 60);
+                $pdf->Cell(0, 10, $hora, 0, 1);
+                $pdf->SetFont('FreeSans', 'B', 12);
+                $pdf->Cell(0, 10, 'Área:', 0, 0);
+                $pdf->SetFont('FreeSans', '', 12);
+                $pdf->SetXY(60, 70);
+                $pdf->Cell(0, 10, $area, 0, 1);
+                $pdf->SetFont('FreeSans', 'B', 12);
+                $pdf->Cell(0, 10, 'Estudio:', 0, 0);
+                $pdf->SetFont('FreeSans', '', 12);
+                $pdf->SetXY(60, 80);
+                $pdf->Cell(0, 10, $estudio, 0, 1);
+                $pdf->SetFont('FreeSans', 'B', 16);
+                $pdf->Cell(0, 10, 'Resultados:', 0, 1, 'C');
+                $pdf->SetFont('FreeSans', '', 12);
+                $pdf->SetXY(10, 100);
+                $pdf->MultiCell(0, 10, $resultados, 0, 'L');
+                $pdf->Output($fecha . '_FOLIO_' . $folio . '_' . $nombre . '.pdf', 'D');
+                ob_end_clean(); // Limpia el búfer de salida
+                sleep(5);
+            }

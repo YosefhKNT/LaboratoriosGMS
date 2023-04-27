@@ -29,7 +29,8 @@ if (isset($_POST['ConsultarCita'])) {
 
 <head>
     <title>Lab GMS</title>
-    <link rel="stylesheet" type="text/css" href="styles/stylesConsultaCyR.css">
+    <link rel="stylesheet" type="text/css" href="../styles/stylesConsultaCyR.css">
+    <link rel="stylesheet" type="text/css" href="../styles/stylesNav.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -52,23 +53,9 @@ if (isset($_POST['ConsultarCita'])) {
 </head>
 
 <body onload="pageLoad()">
-    <nav class="animate__animated animate__fadeInDown">
-        <input type="checkbox" name="" id="check">
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
-        <a href="index.php" class="enlace">
-            <img class="img_logo_gms" src="Images\GMS-Logo.png" alt="GMS-Logo">
-        </a>
-        <ul>
-            <li><a href="index.php">Inicio</a></li>
-            <li><a href="index.php">Estudios</a></li>
-            <li><a href="index.php">Sucursales</a></li>
-            <li><a href="index.php">Covid 19</a></li>
-            <li><a href="hacerCita.php">Agenda una cita</a></li>
-            <li><a href="consultaCita.php">Consulta tu cita</a></li>
-        </ul>
-    </nav>
+<?php
+  include("../Plantillas/nav.html");
+  ?>
     <div class="contenedor" id="contene" onload="document.body.classList.add('animate__animated', 'animate__fadeInDown');">
 
 

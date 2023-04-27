@@ -1,38 +1,33 @@
 <?php
-require('tcpdf\fpdf.php');
+require('../tcpdf/fpdf.php');
 
 session_start();
 
 if (!isset($_SESSION['folio'])) {
-    header("Location: consultarCita.php");
+    header("Location: FORMS\consultaCita.php");
 }
 
 $folio = $_SESSION['folio'];
 // Conexión a la base de datos
 require 'conexion.php';
 
-$query_join = "SELECT citas.id as id, citas.nombre as nombre, 
-        citas.fecha as fecha, citas.hora as hora, 
-        citas.telefono as telefono, citas.clave as clave, 
-        resultados.resultados as resultados, estudio.estudio as estudio, 
-        area.area as area, laboratorista.nombre as laboratorista
-FROM citas
-INNER JOIN resultados ON citas.resultados_id = resultados.id
-INNER JOIN estudio ON citas.estudio_id = estudio.id
-INNER JOIN area ON estudio.area_id = area.id
-INNER JOIN laboratorista ON citas.laboratorista_id = laboratorista.id
-WHERE citas.id = '$folio'";
+$query_join = "SELECT citas.id as id, 
+citas.nombre as nombre, 
+citas.fecha as fecha, 
+citas.hora as hora, 
+citas.telefono as telefono, 
+citas.clave as clave, 
+resultados.resultados as resultados, 
+estudio.estudio as estudio, 
+area.area as area, 
+laboratorista.nombre as laboratorista 
+FROM citas 
+INNER JOIN estudio ON citas.estudio_id = estudio.id 
+INNER JOIN area ON estudio.area_id = area.id 
+INNER JOIN laboratorista ON citas.laboratorista_id = laboratorista.id 
+LEFT JOIN resultados ON citas.resultados_id = resultados.id 
+WHERE citas.id = '$folio';";
 
-$query = "SELECT citas.id as id, citas.nombre as nombre, 
-        citas.fecha as fecha, citas.hora as hora, 
-        citas.telefono as telefono, citas.clave as clave, 
-        estudio.estudio as estudio, area.area as area, 
-        laboratorista.nombre as laboratorista
-FROM citas
-INNER JOIN estudio ON citas.estudio_id = estudio.id
-INNER JOIN area ON estudio.area_id = area.id
-INNER JOIN laboratorista ON citas.laboratorista_id = laboratorista.id
-WHERE citas.id = '$folio'";
 $result = mysqli_query($conn, $query_join);
 
 if ($result->num_rows > 0) {
@@ -44,7 +39,7 @@ if ($result->num_rows > 0) {
 
     <head>
         <title>Citas</title>
-        <link rel="stylesheet" type="text/css" href="styles/stylesCitas.css">
+        <link rel="stylesheet" type="text/css" href="../styles/stylesCitas.css">
         <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -124,97 +119,15 @@ if ($result->num_rows > 0) {
     </html>
 
 <?php
-} else if ($result = mysqli_query($conn, $query)) {
-?>
-
-    <html>
-
-    <head>
-        <title>Citas</title>
-        <link rel="stylesheet" type="text/css" href="styles/stylesCitas.css">
-        <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $("a").click(function(event) {
-                    event.preventDefault();
-                    newLocation = this.href;
-                    $('body').fadeOut('slow', newpage);
-                });
-
-                function newpage() {
-                    window.location = newLocation;
-                }
-            });
-        </script>
-    </head>
-
-    <body>
-        <header>
-            <h1>Laboratorio GMS</h1>
-            <a href="logout.php" class="logout">Volver al inicio</a>
-        </header>
-        <h1>Citas</h1>
-        <table>
-            <thead>
-                <tr class="">
-                    <th>Folio</th>
-                    <th>Clave</th>
-                    <th>Nombre del paciente</th>
-                    <th>Telefono</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Área</th>
-                    <th>Estudio</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
-                    echo "<td><center>" . $row['id'] . "</center></td>";
-                    echo "<td><center>" . $row['clave'] . "</center></td>";
-                    echo "<td><center>" . $row['nombre'] . "</center></td>";
-                    echo "<td><center>" . $row['telefono'] . "</center></td>";
-                    echo "<td><center>" . $row['fecha'] . "</center></td>";
-                    echo "<td><center>" . $row['hora'] . "</center></td>";
-                    echo "<td><center>" . $row['area'] . "</center></td>";
-                    echo "<td><center>" . $row['estudio'] . "</center></td>";
-                    echo "</tr>";
-                    echo "<tr>";
-                    echo "<td colspan='8'> <b>Resultados: </b>Sin Resultados</td>";
-                    echo "</tr>";
-
-                    $folio = $row['id'];
-                    $clave = $row['clave'];
-                    $nombre = $row['nombre'];
-                    $fecha = $row['fecha'];
-                    $hora = $row['hora'];
-                    $telefo = $row['telefono'];
-                    $area = $row['area'];
-                    $estudio = $row['estudio'];
-                    $resultados = 'Sin Resultados.';
-                }
-                ?>
-            </tbody>
-        </table>
-        <form method='post'>
-            <button type='submit' name="download" value="Descargar PDF">Descargar Resultados</button>
-        </form>
-    </body>
-
-    </html>
-
-<?php
 } else { // Si no hay resultados, muestra un mensaje de error
     echo "No se encontró una cita con el folio ingresado.";
 }
+
+
 if (isset($_POST['download'])) {
     // Generar el PDF
     ob_clean();
-    require('TCPDF-main\tcpdf.php');
+    require('../TCPDF-main/tcpdf.php');
 
     $pdf = new TCPDF();
     $pdf->AddPage();
@@ -266,7 +179,7 @@ if (isset($_POST['download'])) {
     $pdf->SetFont('FreeSans', '', 12);
     $pdf->SetXY(10, 100);
     $pdf->MultiCell(0, 10, $resultados, 0, 'L');
-    $pdf->Output($fecha . '_FOLIO_' . $folio . '.pdf', 'D');
+    $pdf->Output($fecha . '_FOLIO_' . $folio . '_' . $nombre . '.pdf', 'D');
 }
 
 mysqli_close($conn);
