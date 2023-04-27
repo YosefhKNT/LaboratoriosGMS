@@ -24,6 +24,8 @@ Microarrays
 Southern blot
 Northern blot
 
+https://www.google.com.mx/maps/place/Grupo+Gen%C3%B3mica+Molecular/@21.5188336,-104.9192985,17z/data=!4m15!1m8!3m7!1s0x8427371ccc62e7a3:0xc88ee08953d779f4!2sGrupo+Gen%C3%B3mica+Molecular!8m2!3d21.5188336!4d-104.9171098!10e5!16s%2Fg%2F11fslqbrzc!3m5!1s0x8427371ccc62e7a3:0xc88ee08953d779f4!8m2!3d21.5188336!4d-104.9171098!16s%2Fg%2F11fslqbrzc
+
 
 //////////////////////////77
 $query_join = "SELECT citas.id as id, 

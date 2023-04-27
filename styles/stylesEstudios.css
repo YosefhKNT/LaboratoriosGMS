@@ -32,11 +32,8 @@ body {
 img {
     display: block;
     margin: 0 auto 20px;
-    max-width: 100%;
-}
-
-.img_logo_gms {
-    height: 40px;
+    width: 400px;
+    height: 200px;
 }
 
 h2 {

@@ -37,8 +37,8 @@
     <ul>
       <li><a href="index.php">Inicio</a></li>
       <li><a href="archives/estudios.php">Estudios</a></li>
-      <li><a href="index.php">Sucursales</a></li>
-      <li><a href="index.php">Covid 19</a></li>
+      <li><a href="archives/sucursal.php">Sucursales</a></li>
+      <li><a href="archives/coviv19.php">Covid 19</a></li>
       <li><a href="archives/hacerCita.php">Agenda una cita</a></li>
       <li><a href="archives/consultaCita.php">Consulta tu cita</a></li>
     </ul>
