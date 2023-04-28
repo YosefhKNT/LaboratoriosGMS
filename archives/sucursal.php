@@ -55,7 +55,7 @@
     ?>
 
     <header>
-        <h1>Sucursal XYZ</h1>
+        <h1>Sucursal "Villa San Angel"</h1>
     </header>
     <main>
         <div class="container">
@@ -75,7 +75,7 @@
         </div>
     </main>
     <footer>
-        <p>&copy; 2023, Sucursal XYZ</p>
+        <p>&copy; 2023, Sucursales GMS</p>
     </footer>
 </body>
 

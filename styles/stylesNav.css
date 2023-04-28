@@ -49,13 +49,23 @@ li a:hover {
     display: none;
 }
 
+.img_logo_gms {
+    height: 40px;
+    width: 100px;
+    margin-top: 20px;
+}
+
 @media (max-width: 1100px) {
     .enlace {
-        padding: 20px;
+        padding-left: 20px;
     }
 
     nav ul li a {
         font-size: 16px;
+    }
+
+    .img_logo_gms {
+        margin-bottom: 0px;
     }
 }
 
@@ -106,12 +116,8 @@ li a:hover {
     ul {
         width: 100%;
     }
+
     nav ul li a {
         font-size: 16px;
     }
-}
-
-.img_logo_gms {
-    height: 40px;
-    width: 100px;
 }
