@@ -27,16 +27,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY"></script>
+    <!-- AIzaSyDh7_U5Oil-vfWGvBLWufa1J0YvwTKoNlk -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh7_U5Oil-vfWGvBLWufa1J0YvwTKoNlk"></script>
     <script>
         function initMap() {
             var location = {
-                lat: 37.7749,
-                lng: -122.4194
+                lat: 21.5188542,
+                lng: -104.9169776
+
             };
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: location
+                zoom: 17,
+                center: location,
+                
             });
             var marker = new google.maps.Marker({
                 position: location,
@@ -54,27 +57,27 @@
     <header>
         <h1>Sucursal XYZ</h1>
     </header>
-
     <main>
-        <section>
-            <h2>Información de la sucursal</h2>
-            <ul>
-                <li><strong>Dirección:</strong> 123 Calle Principal, Ciudad ABC</li>
-                <li><strong>Teléfono:</strong> (123) 456-7890</li>
-                <li><strong>Horario:</strong> Lunes a Viernes de 9:00 am a 6:00 pm, Sábados de 9:00 am a 2:00 pm</li>
-                <li><strong>Correo electrónico:</strong> info@sucursalxyz.com</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>Ubicación en el mapa</h2>
-            <div id="map"></div>
-        </section>
+        <div class="container">
+            <div class="section section-left" id="izq">
+                <h2>Información de la sucursal</h2>
+                <p><strong>Dirección:</strong><br>Av. Insurgentes 895-EPTE, Cddee, 63060 Tepic, Nay.</p>
+                <p><strong>Teléfono:</strong><br>(+52) 311-171-3322</p>
+                <p><strong>Horario:</strong><br>- Lunes a Sabado de 7:00 am a 3:00 pm,<br>- Sábados de 7:00 am a 1:00 pm</p>
+                <p><strong>Correo electrónico:</strong><br>info@sucursalxyz.com</p>
+            </div>
+            <div class="section section-right" id="der">
+                <h2>Ubicación en el mapa</h2>
+                <div id="map-container">
+                    <div id="map" style="z-index: 1;"></div>
+                </div>
+            </div>
+        </div>
     </main>
-
     <footer>
         <p>&copy; 2023, Sucursal XYZ</p>
     </footer>
 </body>
+
 
 </html>
