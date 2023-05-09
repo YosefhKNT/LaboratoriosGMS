@@ -28,34 +28,18 @@ if (isset($_POST['ConsultarCita'])) {
 <html>
 
 <head>
-    <title>Lab GMS</title>
+    <title>GMS | Consultar</title>
     <link rel="stylesheet" type="text/css" href="../styles/stylesConsultaCyR.css">
     <link rel="stylesheet" type="text/css" href="../styles/stylesNav.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("a").click(function(event) {
-                event.preventDefault();
-                newLocation = this.href;
-                $('body').fadeOut('slow', newpage);
-            });
-
-            function newpage() {
-                window.location = newLocation;
-            }
-        });
-    </script>
-
-
+    <?php
+    include("../Plantillas/head.html");
+    ?>
 </head>
 
 <body onload="pageLoad()">
-<?php
-  include("../Plantillas/nav.html");
-  ?>
+    <?php
+    include("../Plantillas/nav.html");
+    ?>
     <div class="contenedor" id="contene" onload="document.body.classList.add('animate__animated', 'animate__fadeInDown');">
 
 
@@ -64,16 +48,23 @@ if (isset($_POST['ConsultarCita'])) {
             <h1>Consulta de citas y resultados</h1>
 
             <form action="" method="post">
-                <label for="Folio">Folio:</label>
-                <input type="text" name="folio" placeholder="Folio">
-                <label for="Clave">Clave:</label>
-                <input type="password" name="clave" placeholder="Clave">
-                <input type="submit" name="ConsultarCita" value="Buscar cita">
+
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" name="folio" placeholder="Folio">
+                    <label for="Folio">Folio</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="password" name="clave" placeholder="Clave">
+                    <label for="Clave">Clave</label>
+                </div>
+                <input class="btn btn-primary" type="submit" name="ConsultarCita" value="Buscar cita">
             </form>
 
         </div>
 
     </div>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

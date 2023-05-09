@@ -2,26 +2,11 @@
 <html lang="es">
 
 <head>
-    <title>COVID-19</title>
-    <link rel="stylesheet" type="text/css" href="../styles/stylesNav.css">
+    <title>GMS | COVID-19</title>
     <link rel="stylesheet" type="text/css" href="../styles/stylesCovid.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("a").click(function(event) {
-                event.preventDefault();
-                newLocation = this.href;
-                $('body').fadeOut('slow', newpage);
-            });
-
-            function newpage() {
-                window.location = newLocation;
-            }
-        });
-    </script>
+    <?php
+    include("../Plantillas/head.html");
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -71,9 +56,9 @@
                 <h2>Información adicional</h2>
                 <p>Para obtener más información sobre el COVID-19, se pueden consultar las siguientes fuentes:</p>
                 <ul>
-                    <li><a href="https://www.who.int/es/emergencies/disease-outbreak-news/item/2020-DON-2019-nCoV-faq-es">Organización Mundial de la Salud</a></li>
-                    <li><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">Centros para el Control y la Prevención de Enfermedades</a></li>
-                    <li><a href="https://www.gob.es/coronavirus/">Ministerio de Sanidad</a></li>
+                    <li class="covid-li"><a href="https://www.who.int/es/emergencies/disease-outbreak-news/item/2020-DON-2019-nCoV-faq-es">Organización Mundial de la Salud</a></li>
+                    <li class="covid-li"><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">Centros para el Control y la Prevención de Enfermedades</a></li>
+                    <li class="covid-li"><a href="https://www.gob.es/coronavirus/">Ministerio de Sanidad</a></li>
                 </ul>
             </section>
         </main>
@@ -83,5 +68,7 @@
     <footer>
         <p>&copy; 2023, COVID-19</p>
     </footer>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+</body>
 
 </html>

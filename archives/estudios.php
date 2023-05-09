@@ -2,65 +2,71 @@
 <html lang="es">
 
 <head>
-    <title>Estudios Clínicos</title>
-    <link rel="stylesheet" type="text/css" href="../styles/stylesNav.css">
+    <title>GMS | Estudios Clínicos</title>
     <link rel="stylesheet" type="text/css" href="../styles/stylesEstudios.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("a").click(function(event) {
-                event.preventDefault();
-                newLocation = this.href;
-                $('body').fadeOut('slow', newpage);
-            });
-
-            function newpage() {
-                window.location = newLocation;
-            }
-        });
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <?php
+    include("../Plantillas/head.html");
+    ?>
 </head>
 
 <body>
+    <?php
+    include("../Plantillas/nav.html");
+    ?>
+    <div class="container p-5">
+        <div class="container rounded shadow-lg text-center text-decoration-underline fs-1 text p-5 mb-5">
+            <h1>Estudios</h1>
+        </div>
         <?php
-        include("../Plantillas/nav.html");
+        ob_start();
+        // Conexión a la base de datos
+        require 'conexion.php';
+
+        // Realización de la consulta para obtener el número de áreas
+        $sql_areas = "SELECT COUNT(`id`) FROM `area`;";
+        $resultado_areas = $conn->query($sql_areas);
+        if ($resultado_areas->num_rows > 0) {
+            $fila_areas = $resultado_areas->fetch_assoc();
+            $num_areas = $fila_areas["COUNT(`id`)"];
+        } else {
+            $num_areas = 0;
+        }
+
+        // Ciclo para realizar la consulta por cada área
+        for ($i = 1; $i <= $num_areas; $i++) {
+            // Consulta para obtener los estudios de cada área
+            $sql_estudios = "SELECT `id`, `estudio`, `descripcion`, `ruta_imagen` FROM `estudio` WHERE `area_id` = $i;";
+            $resultado_estudios = $conn->query($sql_estudios);
+
+            // Consulta para obtener el nombre del área correspondiente
+            $sql_area_nombre = "SELECT `area` FROM `area` WHERE `id` = $i;";
+            $resultado_area_nombre = $conn->query($sql_area_nombre);
+            $fila_area_nombre = $resultado_area_nombre->fetch_assoc();
+            $area_nombre = $fila_area_nombre["area"];
+
+            // Imprimir los resultados de la consulta
+            if ($resultado_estudios->num_rows > 0) {
+                echo "<div class='row mb-5' id='$area_nombre'>";
+                echo "<h2 class='col-md-12'>$area_nombre</h2><br>";
+                while ($fila_estudios = $resultado_estudios->fetch_assoc()) {
+                    echo "<div class='col-md-6'>";
+                    echo "<div class='card card-body shadow mb-3' style='background-color: #ffffff'>";
+                    echo "<div class='container text-center' style='width: 400px; height: 200px;'>";
+                    echo "<img class='img-fluid' style='max-width: 100%; max-height: 100%; object-fit: contain;' src='" . $fila_estudios["ruta_imagen"] . "' alt='Imagen " . $fila_estudios["id"] . "' />";
+                    echo "</div>";
+                    echo "<h2>" . $fila_estudios["estudio"] . "</h2>";
+                    echo "<p>" . $fila_estudios["descripcion"] . "</p>";
+                    echo "</div>";
+                    echo "</div>";
+                }
+                echo "</div>";
+            } else {
+                echo "No se encontraron estudios para el área $i";
+            }
+        }
         ?>
-    <div class="container" onload="document.body.classList.add('animate__animated', 'animate__fadeInDown');">
-        <div class="box">
-            <img src="https://www.elheraldo.co/sites/default/files/body/2013/02/17/articulo/100279-shutterstock_34609177.jpg" alt="Imagen 1" />
-            <h2>Estudio de diagnóstico de enfermedades infecciosas</h2>
-            <p>
-                Nuestro laboratorio clínico ofrece estudios de diagnóstico de enfermedades infecciosas mediante pruebas de PCR y cultivo microbiológico. Contamos con un equipo altamente capacitado y tecnología de vanguardia para garantizar resultados precisos y confiables en el menor tiempo posible.
-            </p>
-        </div>
-        <div class="box">
-            <img src="https://th.bing.com/th/id/R.6376e950e627cc298d2ae00e23e366ed?rik=Crj1xYpL3CQySw&pid=ImgRaw&r=0" alt="Imagen 2" />
-            <h2>Estudio de perfil lipídico</h2>
-            <p>
-                El estudio de perfil lipídico es una herramienta importante para la evaluación del riesgo cardiovascular. En nuestro laboratorio clínico ofrecemos este estudio que incluye la medición de los niveles de colesterol total, colesterol HDL, colesterol LDL y triglicéridos. Los resultados son interpretados por médicos especialistas y entregados al paciente en un informe completo.
-            </p>
-        </div>
-        <div class="box">
-            <img src="https://th.bing.com/th/id/R.7186f3c69b1f84e806396c5aeecd505a?rik=v3qG4snL73AJIg&pid=ImgRaw&r=0&sres=1&sresct=1" alt="Imagen 3" />
-            <h2>Estudio de función hepática</h2>
-            <p>
-                El estudio de función hepática es un conjunto de pruebas que evalúan el funcionamiento del hígado. En nuestro laboratorio clínico ofrecemos este estudio que incluye la medición de enzimas hepáticas, bilirrubina y proteínas. Los resultados son interpretados por médicos especialistas y entregados al paciente en un informe completo.
-            </p>
-        </div>
-        <div class="box">
-            <img src="https://th.bing.com/th/id/R.eb4511530e610266395e5a51cdf85996?rik=%2fXUaDpEFfJiYLg&pid=ImgRaw&r=0" alt="Imagen 4" />
-            <h2>Estudio de detección de drogas en orina</h2>
-            <p>
-                Nuestro laboratorio clínico ofrece un estudio de detección de drogas en orina para empresas y particulares. Realizamos pruebas de detección de una amplia gama de drogas incluyendo cocaína, marihuana, anfetaminas y opiáceos. Los resultados son entregados de manera confidencial al solicitante.
-            </p>
-        </div>
     </div>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

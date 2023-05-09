@@ -1,78 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
   <title>LabGMS-Inicio</title>
+  <meta charset="utf-8" name="description">
   <link rel="stylesheet" href="styles/stylesIndex.css" />
+  <link rel="stylesheet" href="styles/stylesNav.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $("a").click(function(event) {
-        event.preventDefault();
-        newLocation = this.href;
-        $('body').fadeOut('slow', newpage);
-      });
-
-      function newpage() {
-        window.location = newLocation;
-      }
-    });
-  </script>
 </head>
 
 <body>
-  <nav class="animate__animated animate__fadeInDown">
-    <input type="checkbox" name="" id="check">
-    <label for="check" class="checkbtn">
-      <i class="fas fa-bars"></i>
-    </label>
-    <a href="index.php" class="enlace">
-      <img class="img_logo_gms" src="Images/GMS-Logo.png" alt="GMS-Logo">
-    </a>
-    <ul>
-      <li><a href="index.php">Inicio</a></li>
-      <li><a href="archives/estudios.php">Estudios</a></li>
-      <li><a href="archives/sucursal.php">Sucursales</a></li>
-      <li><a href="archives/coviv19.php">Covid 19</a></li>
-      <li><a href="archives/hacerCita.php">Agenda una cita</a></li>
-      <li><a href="archives/consultaCita.php">Consulta tu cita</a></li>
-    </ul>
+  <nav class="navbar navbar-expand-lg nav-custom" style="background-color: #3f51b5">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="index.php">
+        <img src="Images/GMS-Logo.png" alt="LogoGMS" width="60" height="24" class="d-inline-block align-text-top" />
+        Laboratorios GMS
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.php">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="archives/estudios.php">Estudios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="archives/sucursal.php">Sucursales</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="archives/coviv19.php">Covid 19</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="archives/hacerCita.php">Agenda una cita</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="archives/consultaCita.php">Consulta tu cita</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
-  <div class="container" onload="document.body.classList.add('animate__animated', 'animate__fadeInDown');">
-    <div class="box">
-      <img src="https://via.placeholder.com/400x200" alt="Imagen 1" />
-      <h2>Estudio de diagnóstico de enfermedades infecciosas</h2>
-      <p>
-        Nuestro laboratorio clínico ofrece estudios de diagnóstico de enfermedades infecciosas mediante pruebas de PCR y cultivo microbiológico. Contamos con un equipo altamente capacitado y tecnología de vanguardia para garantizar resultados precisos y confiables en el menor tiempo posible.
-      </p>
-    </div>
-    <div class="box">
-      <img src="https://via.placeholder.com/400x200" alt="Imagen 2" />
-      <h2>Estudio de perfil lipídico</h2>
-      <p>
-        El estudio de perfil lipídico es una herramienta importante para la evaluación del riesgo cardiovascular. En nuestro laboratorio clínico ofrecemos este estudio que incluye la medición de los niveles de colesterol total, colesterol HDL, colesterol LDL y triglicéridos. Los resultados son interpretados por médicos especialistas y entregados al paciente en un informe completo.
-      </p>
-    </div>
-    <div class="box">
-      <img src="https://via.placeholder.com/400x200" alt="Imagen 3" />
-      <h2>Estudio de función hepática</h2>
-      <p>
-        El estudio de función hepática es un conjunto de pruebas que evalúan el funcionamiento del hígado. En nuestro laboratorio clínico ofrecemos este estudio que incluye la medición de enzimas hepáticas, bilirrubina y proteínas. Los resultados son interpretados por médicos especialistas y entregados al paciente en un informe completo.
-      </p>
-    </div>
-    <div class="box">
-      <img src="https://via.placeholder.com/400x200" alt="Imagen 4" />
-      <h2>Estudio de detección de drogas en orina</h2>
-      <p>
-        Nuestro laboratorio clínico ofrece un estudio de detección de drogas en orina para empresas y particulares. Realizamos pruebas de detección de una amplia gama de drogas incluyendo cocaína, marihuana, anfetaminas y opiáceos. Los resultados son entregados de manera confidencial al solicitante.
-      </p>
-    </div>
-  </div>
+
+  <main>
+    <section class="banner">
+      <h1>Laboratorio Clínico</h1>
+      <p>Tu salud es nuestra prioridad</p>
+    </section>
+
+
+    <section class="informacion">
+      <h2>Información general</h2>
+      <p>Somos un laboratorio clínico con más de 10 años de experiencia en el sector de la salud. Nos especializamos en la realización de pruebas clínicas y diagnóstico de enfermedades.</p>
+    </section>
+
+    <section class="mision-vision">
+      <div class="mision">
+        <h2>Misión</h2>
+        <p>Nuestra misión es proporcionar servicios de salud de calidad y confiables a nuestros pacientes.</p>
+      </div>
+      <div class="vision">
+        <h2>Visión</h2>
+        <p>Nuestra visión es convertirnos en el laboratorio clínico líder en la región, reconocido por su excelencia y profesionalismo.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Laboratorio Clínico. Todos los derechos reservados.</p>
+  </footer>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

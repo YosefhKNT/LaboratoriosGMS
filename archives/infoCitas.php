@@ -38,82 +38,90 @@ if ($result->num_rows > 0) {
     <html>
 
     <head>
-        <title>Citas</title>
-        <link rel="stylesheet" type="text/css" href="../styles/stylesCitas.css">
-        <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $("a").click(function(event) {
-                    event.preventDefault();
-                    newLocation = this.href;
-                    $('body').fadeOut('slow', newpage);
-                });
-
-                function newpage() {
-                    window.location = newLocation;
-                }
-            });
-        </script>
+        <title>GMS | Citas</title>
+        <!-- <link rel="stylesheet" type="text/css" href="../styles/stylesCitas.css"> -->
+        <?php
+        include("../Plantillas/head.html");
+        ?>
     </head>
 
     <body>
-        <header>
-            <h1>Laboratorio GMS</h1>
-            <a href="logout.php" class="logout">Volver al inicio</a>
-        </header>
-        <h1>Citas</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Folio</th>
-                    <th>Clave</th>
-                    <th>Nombre del paciente</th>
-                    <th>Telefono</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Área</th>
-                    <th>Estudio</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
-                    echo "<td><center>" . $row['id'] . "</center></td>";
-                    echo "<td><center>" . $row['clave'] . "</center></td>";
-                    echo "<td><center>" . $row['nombre'] . "</center></td>";
-                    echo "<td><center>" . $row['telefono'] . "</center></td>";
-                    echo "<td><center>" . $row['fecha'] . "</center></td>";
-                    echo "<td><center>" . $row['hora'] . "</center></td>";
-                    echo "<td><center>" . $row['area'] . "</center></td>";
-                    echo "<td><center>" . $row['estudio'] . "</center></td>";
-                    echo "</tr>";
-                    echo "<tr>";
-                    echo "<td colspan='8'> <b>Resultados: </b></td>";
-                    echo "</tr>";
-                    echo "<tr>";
-                    echo "<td colspan='8'>" . $row['resultados'] . "</td>";
-                    echo "</tr>";
+        <nav class="navbar navbar-expand-lg nav-custom" style="background-color: #3f51b5">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="../index.php">
+                    <img src="../Images/GMS-Logo.png" alt="Logo" width="60" height="24" class="d-inline-block align-text-top" />
+                    Laboratorios GMS
+                </a>
 
-                    $folio = $row['id'];
-                    $clave = $row['clave'];
-                    $nombre = $row['nombre'];
-                    $fecha = $row['fecha'];
-                    $hora = $row['hora'];
-                    $telefo = $row['telefono'];
-                    $area = $row['area'];
-                    $estudio = $row['estudio'];
-                    $resultados = $row['resultados'];
-                }
-                ?>
-            </tbody>
-        </table>
-        <form method='post'>
-            <button type='submit' name="download" value="Descargar PDF">Descargar Resultados</button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Volver al Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <h1 class="text-center">Cita</h1>
+
+            <table class="table table-striped table-bordered caption-top ">
+                <caption>Datos de la cita</caption>
+                <thead class="">
+                    <tr class="tr-head text-center text-bg-primary">
+                        <th>Folio</th>
+                        <th>Clave</th>
+                        <th>Nombre del paciente</th>
+                        <th>Telefono</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Estudio</th>
+                        <th>Área</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <?php
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td><center>" . $row['id'] . "</center></td>";
+                        echo "<td><center>" . $row['clave'] . "</center></td>";
+                        echo "<td><center>" . $row['nombre'] . "</center></td>";
+                        echo "<td><center>" . $row['telefono'] . "</center></td>";
+                        echo "<td><center>" . $row['fecha'] . "</center></td>";
+                        echo "<td><center>" . $row['hora'] . "</center></td>";
+                        echo "<td><center>" . $row['area'] . "</center></td>";
+                        echo "<td><center>" . $row['estudio'] . "</center></td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<td colspan='8'> <b>Resultados: </b></td>";
+                        echo "</tr>";
+                        echo "<tr>";
+                        echo "<td colspan='8'>" . $row['resultados'] . "</td>";
+                        echo "</tr>";
+
+                        $folio = $row['id'];
+                        $clave = $row['clave'];
+                        $nombre = $row['nombre'];
+                        $fecha = $row['fecha'];
+                        $hora = $row['hora'];
+                        $telefo = $row['telefono'];
+                        $area = $row['area'];
+                        $estudio = $row['estudio'];
+                        $resultados = $row['resultados'];
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
+        <form method='post' class="text-center">
+            <button class="btn btn-outline-success" type='submit' name="download" value="Descargar PDF">Descargar Resultados</button>
         </form>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
     </body>
 
     </html>

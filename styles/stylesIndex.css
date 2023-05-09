@@ -3,162 +3,110 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Hanken Grotesk', sans-serif;
+  font-family: "Hanken Grotesk", sans-serif;
   list-style: none;
 }
 
-nav {
-  background-color: #3f51b5;
-  height: 80px;
-  width: 100%;
-}
-
-.enlace {
-  position: absolute;
-  padding: 20px 50px;
-}
-
-nav ul {
-  float: right;
-  margin-right: 20px;
-}
-
-nav ul li {
-  display: inline-block;
-  line-height: 80px;
-  margin: 0 5px;
-}
-
-nav ul li a {
-  color: #FFFFFF;
-  font-size: 18px;
-  padding: 7px 13px;
-  border-radius: 3px;
-  text-transform: uppercase;
-}
-
-li a.active,
-li a:hover {
-  background: #fff;
-  color: #3f51b5;
-  transition: .5s;
-}
-
-.checkbtn {
-  font-size: 30px;
-  color: #fff;
-  float: right;
-  line-height: 80px;
-  margin-right: 40px;
-  cursor: pointer;
-  display: none;
-}
-
-#check {
-  display: none;
-}
-
-@media (max-width: 952px) {
-  .enlace {
-    padding: 20px;
-  }
-
-  nav ul li a {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 858px) {
-  .checkbtn {
-    display: block;
-  }
-
-  ul {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #3f51b5;
-    top: 80px;
-    left: -100%;
-    text-align: center;
-    transition: all .5s;
-  }
-
-  nav ul li {
-    display: block;
-    margin: 50px 0;
-    line-height: 30px;
-  }
-
-  nav ul li a {
-    font-size: 20px;
-  }
-
-  li a:hover,
-  li a.active {
-    background: #fff;
-    color: #3f51b5;
-  }
-
-  #check:checked~ul {
-    left: 0;
-  }
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 20px auto;
-  max-width: 1200px;
-}
-
-.box {
-  background-color: #FFFFFF;
-  border-radius: 5px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  margin-bottom: 20px;
-  padding: 20px;
-  width: calc(50% - 10px);
-  text-align: justify;
-}
-
-img {
-  display: block;
-  margin: 0 auto 20px;
-  max-width: 100%;
+html {
+  font-size: 16px;
 }
 
 .img_logo_gms {
   height: 40px;
 }
 
-h2 {
-  color: #333333;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+main {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+/* Carousel */
+.banner {
   text-align: center;
+  padding: auto;
+  background-color: aliceblue;
 }
 
-p {
-  color: #666666;
-  font-size: 16px;
+/* Información general */
+.informacion {
+  padding: 2em;
+}
+
+.informacion h2 {
+  font-size: 2em;
+  color: #3f51b5;
+  margin-top: 0;
+}
+
+.informacion p {
+  font-size: 1.2em;
   line-height: 1.5;
-  margin-bottom: 20px;
 }
 
-/* Estilos del header 
-header {
-  background-color: #3f51b5;
-  color: #FFFFFF;
+/* Misión y Visión */
+.mision-vision {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px;
-}*/
+  background-color: #f2f2f2;
+  padding: 3em;
+}
 
-h1 {
-  font-size: 36px;
-  margin-right: 20px;
+.mision,
+.vision {
+  flex-basis: 45%;
+  margin-bottom: 2em;
+}
+
+.mision h2,
+.vision h2 {
+  color: #3f51b5;
+  font-size: 2em;
+}
+
+.mision p,
+.vision p {
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+/* Media Queries */
+@media (min-width: 870px) {
+  /* Banner */
+  .banner {
+    padding: 5em;
+  }
+
+  .banner h1 {
+    font-size: 5em;
+    margin-bottom: 0.5em;
+  }
+
+  /* Información general */
+  .informacion {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Misión y Visión */
+  .mision,
+  .vision {
+    margin-bottom: 0;
+  }
+}
+
+/* Footer */
+
+.footer p {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+footer {
+  background-color: #3f51b5;
+  color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+  flex-shrink: 0;
 }

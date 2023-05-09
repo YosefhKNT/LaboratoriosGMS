@@ -50,28 +50,12 @@ if (isset($_POST['AgendarCita'])) {
 <html>
 
 <head>
-    <title>Lab GMS</title>
-    <link rel="stylesheet" type="text/css" href="../styles/stylesNav.css">
+    <title>GMS | Agendar</title>
+    <?php
+    include("../Plantillas/head.html");
+    ?>
+
     <link rel="stylesheet" type="text/css" href="../styles/stylesConsultaCyR.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("a").click(function(event) {
-                event.preventDefault();
-                newLocation = this.href;
-                $('body').fadeOut('slow', newpage);
-            });
-
-            function newpage() {
-                window.location = newLocation;
-            }
-        });
-    </script>
-
-
 </head>
 
 <body onload="pageLoad()">
@@ -80,7 +64,7 @@ if (isset($_POST['AgendarCita'])) {
     ?>
 
     <!-- ====================================================================== -->
-    <div class="contenedor" id="contene" onload="document.body.classList.add('animate__animated', 'animate__fadeInDown');">
+    <div class="contenedor" id="contenedor" onload="document.body.classList.add('animate__animated', 'animate__fadeInDown');">
 
         <!----------------------------------AGENDA DE CITAS------------------------------------>
         <div class="form-container" id="agendar_cita">
@@ -88,14 +72,25 @@ if (isset($_POST['AgendarCita'])) {
             <h1>Solicitud de estudio clínico</h1>
 
             <form action="#" method="post" id="insertar_cita">
-                <label for="Nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
 
-                <label for="Telefono">Telefono:</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="123-456-7890" required>
-
-                <label for="fecha">Fecha:</label>
-                <input type="date" id="fechaCita" name="fechaCita" oninput="usarTodo()" required>
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                    <label for="nombre">Nombre</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="tel" id="telefono" name="telefono" placeholder="123-456-7890" required>
+                    <label for="Telefono">Telefono</label>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="fechaCita">Fecha:</label>
+                        <input type="date" id="fechaCita" name="fechaCita" oninput="usarTodo()" required>
+                    </div>
+                    <div class="col">
+                        <label for="hora">Hora:</label>
+                        <select id="horaCita" name="horaCita"></select>
+                    </div>
+                </div>
                 <script>
                     function usarTodo() {
                         checkdate();
@@ -210,25 +205,29 @@ if (isset($_POST['AgendarCita'])) {
                         }
                     }
                 </script>
-                <label for="hora">Hora: (7:00 am - 4:00 pm)</label>
-                <select id="horaCita" name="horaCita"></select>
 
-                <label for="estudio">Estudio:</label>
-                <select id="estudio" name="estudio" onchange="buscarLaboratorista()" required>
-                    <option value="" selected>Seleccione un Estudio</option>
-                    <?php
-                    // Realizar la consulta a la base de datos
-                    $consulta = "SELECT id, estudio FROM estudio";
-                    $resultado = mysqli_query($conn, $consulta);
-                    echo "$consulta";
+                <div class="form-floating">
 
-                    // Recorrer los resultados de la consulta y generar las opciones del select
-                    while ($fila = mysqli_fetch_assoc($resultado)) {
-                        echo '<option id="estudio" value="' . $fila['estudio'] . '">' . $fila['estudio'] . '</option>';
-                    }
-                    ?>
+                    <select class="form-select" id="estudio" name="estudio" onchange="buscarLaboratorista()" required>
+                        <option value="" selected>Seleccione un Estudio</option>
+                        <?php
+                        // Realizar la consulta a la base de datos
+                        $consulta = "SELECT id, estudio FROM estudio";
+                        $resultado = mysqli_query($conn, $consulta);
+                        echo "$consulta";
 
-                </select>
+                        // Recorrer los resultados de la consulta y generar las opciones del select
+                        while ($fila = mysqli_fetch_assoc($resultado)) {
+                            echo '<option id="estudio" value="' . $fila['estudio'] . '">' . $fila['estudio'] . '</option>';
+                        }
+                        ?>
+
+                    </select>
+                    <label for="estudio">Estudio:</label>
+
+                </div>
+
+
                 <script>
                     function buscarLaboratorista() {
                         var estudio = document.getElementById("estudio").value;
@@ -252,12 +251,13 @@ if (isset($_POST['AgendarCita'])) {
                 </script>
 
                 <input type="hidden" name="laboratorista" id="laboratorista" placeholder="Laboratorista" readonly>
-
-                <input type="submit" name="AgendarCita" value="Enviar solicitud">
+                <br>
+                <input class="btn btn-primary" type="submit" name="AgendarCita" value="Enviar solicitud">
             </form>
 
         </div>
     </div>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -1,123 +1,18 @@
-nav {
-    background-color: #3f51b5;
-    height: 80px;
-    width: 100%;
-    z-index: 9999;
+.nav-custom {
+  background-color: #3f51b5;
 }
 
-.enlace {
-    position: absolute;
-    padding: 0px 50px;
+.nav-link {
+  margin-right: 10px;
+  color: #ffffff;
 }
 
-nav ul {
-    float: right;
-    margin-right: 20px;
+.navbar-nav li a {
+  color: #ffffff;
+  border-radius: 5px;
 }
 
-nav ul li {
-    display: inline-block;
-    line-height: 50px;
-}
-
-nav ul li a {
-    color: #ffffff;
-    font-size: 18px;
-    padding: 7px 13px;
-    border-radius: 3px;
-    text-transform: uppercase;
-}
-
-li a.active,
-li a:hover {
-    background: #fff;
-    color: #3f51b5;
-    transition: .5s;
-}
-
-.checkbtn {
-    font-size: 30px;
-    color: #fff;
-    float: right;
-    line-height: 80px;
-    margin-right: 40px;
-    cursor: pointer;
-    display: none;
-}
-
-#check {
-    display: none;
-}
-
-.img_logo_gms {
-    height: 40px;
-    width: 100px;
-    margin-top: 20px;
-}
-
-@media (max-width: 1100px) {
-    .enlace {
-        padding-left: 20px;
-    }
-
-    nav ul li a {
-        font-size: 16px;
-    }
-
-    .img_logo_gms {
-        margin-bottom: 0px;
-    }
-}
-
-@media (max-width: 1000px) {
-    .checkbtn {
-        display: inline;
-        margin-top: 0px;
-    }
-
-    ul {
-        position: fixed;
-        width: 50%;
-        height: auto;
-        background: #3f51b5;
-        top: 65px;
-        left: -100%;
-        transition: all .5s;
-    }
-
-    nav ul li {
-        display: block;
-        margin: 50px 0;
-        line-height: 30px;
-    }
-
-    nav ul li a {
-        font-size: 20px;
-    }
-
-    li a:hover,
-    li a.active {
-        background: #fff;
-        color: #3f51b5;
-    }
-
-    #check:checked~ul {
-        left: 0;
-    }
-}
-
-@media (max-width: 510px) {
-    nav ul li a {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 430px) {
-    ul {
-        width: 100%;
-    }
-
-    nav ul li a {
-        font-size: 16px;
-    }
+.navbar-nav li a:hover {
+  background-color: #ffffff;
+  color: #3f51b5;
 }

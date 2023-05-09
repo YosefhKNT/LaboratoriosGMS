@@ -3,27 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Sucursal XYZ</title>
+    <title>GMS | Sucursal</title>
     <link rel="stylesheet" type="text/css" href="../styles/stylesNav.css">
     <link rel="stylesheet" type="text/css" href="../styles/stylesSucursal.css">
-
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("a").click(function(event) {
-                event.preventDefault();
-                newLocation = this.href;
-                $('body').fadeOut('slow', newpage);
-            });
-
-            function newpage() {
-                window.location = newLocation;
-            }
-        });
-    </script>
+    <?php
+    include("../Plantillas/head.html");
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -39,7 +24,7 @@
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 17,
                 center: location,
-                
+
             });
             var marker = new google.maps.Marker({
                 position: location,
@@ -77,6 +62,7 @@
     <footer>
         <p>&copy; 2023, Sucursales GMS</p>
     </footer>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 
