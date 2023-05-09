@@ -61,7 +61,7 @@ if (isset($_POST['ConsultarCita'])) {
                 <div class="form-floating text-center mb-3 mx-5">
                     <input class="form-control form-control-lg btn btn-primary " type="submit" name="ConsultarCita" value="Buscar cita">
                 </div>
-
+                <input type="hidden">
             </form>
 
         </div>

@@ -86,6 +86,7 @@
     </footer>
     <script src=" ../bootstrap/js/bootstrap.min.js">
     </script>
+    <input type="hidden">
 </body>
 
 </html>

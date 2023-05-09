@@ -152,7 +152,7 @@ if (isset($_POST['AgendarCita'])) {
                         Elija el estudio
                     </div>
                 </div>
-
+                <input type="hidden">
                 <input type="hidden" name="laboratorista" id="laboratorista" placeholder="Laboratorista" readonly>
                 <!-- Boton -->
                 <div class="text-center">

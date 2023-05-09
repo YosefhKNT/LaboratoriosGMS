@@ -122,8 +122,8 @@ if ($result->num_rows > 0) {
             <button class="btn btn-outline-success" type='submit' name="download" value="Descargar PDF">Descargar Resultados</button>
         </form>
         <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <input type="hidden">
     </body>
-
     </html>
 
 <?php

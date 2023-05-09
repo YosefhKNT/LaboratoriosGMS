@@ -65,7 +65,7 @@
             }
         }
         ?>
-    </div>
+    </div><input type="hidden">
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
 
