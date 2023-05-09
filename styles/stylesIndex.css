@@ -15,17 +15,6 @@ html {
   height: 40px;
 }
 
-main {
-  margin-left: 100px;
-  margin-right: 100px;
-}
-
-/* Carousel */
-.banner {
-  text-align: center;
-  padding: auto;
-  background-color: aliceblue;
-}
 
 /* Información general */
 .informacion {

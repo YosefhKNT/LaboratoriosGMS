@@ -47,18 +47,21 @@ if (isset($_POST['ConsultarCita'])) {
         <div class="form-container" id="consulta_cita">
             <h1>Consulta de citas y resultados</h1>
 
-            <form action="" method="post">
+            <form action="" method="post" class="text-center">
 
-                <div class="form-floating mb-3">
-                    <input class="form-control" type="text" name="folio" placeholder="Folio">
+                <div class=" form-floating mb-3 mx-5">
+                    <input class="form-control form-control-lg" type="text" name="folio" placeholder="Folio">
                     <label for="Folio">Folio</label>
                 </div>
 
-                <div class="form-floating mb-3">
-                    <input class="form-control" type="password" name="clave" placeholder="Clave">
+                <div class="form-floating mb-3 mx-5">
+                    <input class="form-control form-control-lg" type="password" name="clave" placeholder="Clave">
                     <label for="Clave">Clave</label>
                 </div>
-                <input class="btn btn-primary" type="submit" name="ConsultarCita" value="Buscar cita">
+                <div class="form-floating text-center mb-3 mx-5">
+                    <input class="form-control form-control-lg btn btn-primary " type="submit" name="ConsultarCita" value="Buscar cita">
+                </div>
+
             </form>
 
         </div>
