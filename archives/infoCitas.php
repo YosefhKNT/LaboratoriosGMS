@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require('../tcpdf/fpdf.php');
 
 session_start();
@@ -70,7 +71,7 @@ if ($result->num_rows > 0) {
         <div class="container">
             <h1 class="text-center">Cita</h1>
 
-            <table class="table table-striped table-bordered caption-top ">
+            <table class="table table-striped table-bordered caption-top">
                 <caption>Datos de la cita</caption>
                 <thead class="">
                     <tr class="tr-head text-center text-bg-primary">
@@ -87,6 +88,16 @@ if ($result->num_rows > 0) {
                 <tbody class="table-group-divider">
                     <?php
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $folio = $row['id'];
+                        $clave = $row['clave'];
+                        $nombre = $row['nombre'];
+                        $fecha = $row['fecha'];
+                        $hora = $row['hora'];
+                        $telefo = $row['telefono'];
+                        $area = $row['area'];
+                        $estudio = $row['estudio'];
+                        $resultados = $row['resultados'];
+
                         echo "<tr>";
                         echo "<td><center>" . $row['id'] . "</center></td>";
                         echo "<td><center>" . $row['clave'] . "</center></td>";
@@ -103,27 +114,66 @@ if ($result->num_rows > 0) {
                         echo "<tr>";
                         echo "<td colspan='8'>" . $row['resultados'] . "</td>";
                         echo "</tr>";
-
-                        $folio = $row['id'];
-                        $clave = $row['clave'];
-                        $nombre = $row['nombre'];
-                        $fecha = $row['fecha'];
-                        $hora = $row['hora'];
-                        $telefo = $row['telefono'];
-                        $area = $row['area'];
-                        $estudio = $row['estudio'];
-                        $resultados = $row['resultados'];
                     }
                     ?>
                 </tbody>
             </table>
-        </div>
-        <form method='post' class="text-center">
-            <button class="btn btn-outline-success" type='submit' name="download" value="Descargar PDF">Descargar Resultados</button>
-        </form>
-        <script src="../bootstrap/js/bootstrap.min.js"></script>
-        <input type="hidden">
+            <form method='post' class="text-center">
+                <div class="d-grid gap-2 col-6 mx-auto">
+
+                    <button class="btn btn-success btn-lg" id="liveAlertBtn" type='submit' name="pdf" value="Descargar PDF">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+                        </svg>
+                        Descargar mi información</button>
+                    <div id="liveAlertPlaceholder"></div>
+                </div>
+
+            </form>
+
+            <div class="container-fluid text-center fixed-bottom bg-danger">
+
+                <div class="row m-5">
+                    <div class="col col-lg-1 float-end">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="white" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                        </svg>
+                    </div>
+                    <div class="col">
+                        <p class="fw-bold text-light fs-3 ">
+                            NO OLVIDES DESCARGAR TUS DATOS, SERA LA UNICA VEZ QUE SE TE DARA TU <strong>"FOLIO" Y "CLAVE"</strong>
+                        </p>
+                    </div>
+                </div>
+                <!-- Script para realizar un alert -->
+                <script>
+                    const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+                    const appendAlert = (message, type) => {
+                        const wrapper = document.createElement('div')
+                        wrapper.innerHTML = [
+                            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                            `   <div>${message}</div>`,
+                            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                            '</div>'
+                        ].join('')
+
+                        alertPlaceholder.append(wrapper)
+                    }
+
+                    const alertTrigger = document.getElementById('liveAlertBtn')
+                    if (alertTrigger) {
+                        alertTrigger.addEventListener('click', () => {
+                            appendAlert('Tus informacion de cita se descargó!', 'success')
+                        })
+                    }
+                </script>
+            </div>
+
+
+
+            <script src="../bootstrap/js/bootstrap.min.js"></script>
     </body>
+
     </html>
 
 <?php
@@ -131,8 +181,7 @@ if ($result->num_rows > 0) {
     echo "No se encontró una cita con el folio ingresado.";
 }
 
-
-if (isset($_POST['download'])) {
+if (isset($_POST['pdf'])) {
     // Generar el PDF
     ob_clean();
     require('../TCPDF-main/tcpdf.php');

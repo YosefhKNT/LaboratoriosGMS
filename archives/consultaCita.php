@@ -36,7 +36,7 @@ if (isset($_POST['ConsultarCita'])) {
     ?>
 </head>
 
-<body onload="pageLoad()">
+<body>
     <?php
     include("../Plantillas/nav.html");
     ?>
@@ -47,21 +47,21 @@ if (isset($_POST['ConsultarCita'])) {
         <div class="form-container" id="consulta_cita">
             <h1>Consulta de citas y resultados</h1>
 
-            <form action="" method="post" class="text-center">
+            <form action="" method="post" class="text-center mx-5">
 
-                <div class=" form-floating mb-3 mx-5">
+                <div class=" form-floating mb-3">
                     <input class="form-control form-control-lg" type="text" name="folio" placeholder="Folio">
                     <label for="Folio">Folio</label>
                 </div>
 
-                <div class="form-floating mb-3 mx-5">
+                <div class="form-floating mb-3">
                     <input class="form-control form-control-lg" type="password" name="clave" placeholder="Clave">
                     <label for="Clave">Clave</label>
                 </div>
-                <div class="form-floating text-center mb-3 mx-5">
-                    <input class="form-control form-control-lg btn btn-primary " type="submit" name="ConsultarCita" value="Buscar cita">
+
+                <div class="text-center">
+                    <input class="form-control btn btn-primary p-3" type="submit" name="ConsultarCita" value="Buscar cita">
                 </div>
-                <input type="hidden">
             </form>
 
         </div>

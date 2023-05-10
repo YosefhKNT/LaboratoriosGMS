@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>LabGMS-Inicio</title>
+    <title>GMS | Inicio</title>
     <meta charset="utf-8" name="description">
     <link rel="stylesheet" href="styles/stylesIndex.css" />
     <link rel="stylesheet" href="styles/stylesNav.css" />
