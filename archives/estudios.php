@@ -46,17 +46,17 @@
 
             // Imprimir los resultados de la consulta
             if ($resultado_estudios->num_rows > 0) {
-                echo "<div class='row mb-5' id='$area_nombre'>";
+                echo "<div class='d-flex row mb-5' id='$area_nombre'>";
                 echo "<h2 class='col-md-12'>$area_nombre</h2><br>";
                 while ($fila_estudios = $resultado_estudios->fetch_assoc()) {
-                    echo "<div class='col-md-6'>";
-                    echo "<div class='card card-body shadow mb-3' style='background-color: #ffffff'>";
-                    echo "<div class='container text-center' style='width: 400px; height: 200px;'>";
-                    echo "<img class='img-fluid' style='max-width: 100%; max-height: 100%; object-fit: contain;' src='" . $fila_estudios["ruta_imagen"] . "' alt='Imagen " . $fila_estudios["id"] . "' />";
-                    echo "</div>";
-                    echo "<h2>" . $fila_estudios["estudio"] . "</h2>";
-                    echo "<p>" . $fila_estudios["descripcion"] . "</p>";
-                    echo "</div>";
+                    echo "<div class='flex-fill col-md-6 mb-3 '>";
+                    echo "  <div class='card card-body align-top mb-3' style='background-color: #ffffff; height: 100%;'>";
+                    echo "      <div class='container text-center' style='width: auto; height:200px;'>";
+                    echo "          <img class='estudio img-fluid' src='estudios_img/" . $fila_estudios["ruta_imagen"] . "' alt='Imagen " . $fila_estudios["id"] . "' />";
+                    echo "      </div>";
+                    echo "      <h2 class='align-top'>" . $fila_estudios["estudio"] . "</h2>";
+                    echo "      <p style='text-align: justify;'>" . $fila_estudios["descripcion"] . "</p>";
+                    echo "  </div>";
                     echo "</div>";
                 }
                 echo "</div>";
@@ -65,7 +65,7 @@
             }
         }
         ?>
-    </div><input type="hidden">
+    </div>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
 

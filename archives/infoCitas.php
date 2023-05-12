@@ -81,8 +81,8 @@ if ($result->num_rows > 0) {
                         <th>Telefono</th>
                         <th>Fecha</th>
                         <th>Hora</th>
-                        <th>Estudio</th>
                         <th>Área</th>
+                        <th>Estudio</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">

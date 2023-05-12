@@ -51,6 +51,53 @@
         </div>
     </nav>
 
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="Images/analisis.jpg" class="sliderimg d-block w-100" alt="...">
+                <div class="carousel-caption rounded d-none d-md-block bg-black bg-opacity-75">
+                    <h5>Analisis certeros</h5>
+                    <p>Estamos al tanto de tus analisis para darte resultados precisos.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Images/Equipo-basico.jpg" class="sliderimg d-block w-100" alt="...">
+                <div class="carousel-caption rounded d-none d-md-block bg-black bg-opacity-75">
+                    <h5>Equipo</h5>
+                    <p>Contamos con el equipo necesario para el estudio que necesites.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Images/resultados.jpg" class="sliderimg d-block w-100" alt="...">
+                <div class="carousel-caption rounded d-none d-md-block bg-black bg-opacity-75">
+                    <h5>Resultados</h5>
+                    <p>Obtendras tus resultados lo mas rapido posible.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="Images/tipos-de-estidios.jpg" class="sliderimg d-block w-100" alt="...">
+                <div class="carousel-caption rounded d-none d-md-block bg-black bg-opacity-75">
+                    <h5>Estudios</h5>
+                    <p>Contamos con una gran variedad de estudios para lo que usted necesita.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon rounded bg-black bg-opacity-75" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon rounded bg-black bg-opacity-75" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
     <div class="card-header text-center m-5">
         <h1>Laboratorio Clínico</h1>
         <p>Tu salud es nuestra prioridad</p>
