@@ -1,18 +1,30 @@
 body {
   font-family: "Hanken Grotesk", sans-serif;
-  background-color: #ebf4ff;
 }
 
-.animate__fadeIn {
-  animation-duration: 2s;
+/* Para el AVISO */
+.texto {
+  font-size: 32px;
+  color: #f1f1f1;
+}
+@media (max-width: 991px) {
+  .comtainer {
+    width: 100%;
+    margin: 0;
+  }
+  .texto {
+    font-size: 24px;
+  }
 }
 
-h1 {
-  text-align: center;
-  margin: 20px 50px;
-}
-.tr-head {
-  background: #3f51b5;
+@media (min-width: 380) {
+  .comtainer {
+    width: 100%;
+    margin: 0;
+  }
+  .texto {
+    font-size: 16px;
+  }
 }
 
 /* table {

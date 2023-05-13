@@ -5,7 +5,7 @@ require('../tcpdf/fpdf.php');
 session_start();
 
 if (!isset($_SESSION['folio'])) {
-    header("Location: FORMS\consultaCita.php");
+    header("Location: consultaCita.php");
 }
 
 $folio = $_SESSION['folio'];
@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
 
     <head>
         <title>GMS | Citas</title>
-        <!-- <link rel="stylesheet" type="text/css" href="../styles/stylesCitas.css"> -->
+        <link rel="stylesheet" type="text/css" href="../styles/stylesCitas.css">
         <?php
         include("../Plantillas/head.html");
         ?>
@@ -68,7 +68,7 @@ if ($result->num_rows > 0) {
         </nav>
 
 
-        <div class="container">
+        <div class="container-fluid px-5">
             <h1 class="text-center">Cita</h1>
 
             <table class="table table-striped table-bordered caption-top">
@@ -79,10 +79,6 @@ if ($result->num_rows > 0) {
                         <th>Clave</th>
                         <th>Nombre del paciente</th>
                         <th>Telefono</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Área</th>
-                        <th>Estudio</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -100,9 +96,16 @@ if ($result->num_rows > 0) {
 
                         echo "<tr>";
                         echo "<td><center>" . $row['id'] . "</center></td>";
-                        echo "<td><center>" . $row['clave'] . "</center></td>";
+                        echo "<td><center><p class='user-select-all'>" . $row['clave'] . "</p></center></td>";
                         echo "<td><center>" . $row['nombre'] . "</center></td>";
                         echo "<td><center>" . $row['telefono'] . "</center></td>";
+                        echo "</tr> ";
+                        echo "<tr class='tr-head text-center tc-light text-bg-primary'>";
+                        echo "<th>Fecha</th>";
+                        echo "<th>Hora</th>";
+                        echo "<th>Área</th>";
+                        echo "<th>Estudio</th>";
+                        echo "</tr> <tr>";
                         echo "<td><center>" . $row['fecha'] . "</center></td>";
                         echo "<td><center>" . $row['hora'] . "</center></td>";
                         echo "<td><center>" . $row['area'] . "</center></td>";
@@ -130,8 +133,23 @@ if ($result->num_rows > 0) {
                 </div>
 
             </form>
+            <div class="container-fluid fixed-bottom bg-danger">
+                <div class="row m-2 justify-content-center align-items-center">
+                    <div class="col-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="white" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                        </svg>
+                    </div>
+                    <div class="col-auto">
+                        <p class="texto text-center">
+                            No olvides descargar tus datos, será la única vez que se te dará tu <strong>"FOLIO" y "CLAVE"</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-            <div class="container-fluid text-center fixed-bottom bg-danger">
+            <!-- =========================================================== -->
+            <!-- <div class="container-fluid text-center fixed-bottom bg-danger">
 
                 <div class="row m-5">
                     <div class="col col-lg-1 float-end">
@@ -140,39 +158,40 @@ if ($result->num_rows > 0) {
                         </svg>
                     </div>
                     <div class="col">
-                        <p class="fw-bold text-light fs-3 ">
-                            NO OLVIDES DESCARGAR TUS DATOS, SERA LA UNICA VEZ QUE SE TE DARA TU <strong>"FOLIO" Y "CLAVE"</strong>
+                        <p class="texto">
+                            No olvides descragar tu datos, será la unica vez que se te dará tu <strong>"FOLIO" y "CLAVE"</strong>
                         </p>
                     </div>
                 </div>
-                <!-- Script para realizar un alert -->
-                <script>
-                    const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
-                    const appendAlert = (message, type) => {
-                        const wrapper = document.createElement('div')
-                        wrapper.innerHTML = [
-                            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-                            `   <div>${message}</div>`,
-                            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-                            '</div>'
-                        ].join('')
 
-                        alertPlaceholder.append(wrapper)
-                    }
-
-                    const alertTrigger = document.getElementById('liveAlertBtn')
-                    if (alertTrigger) {
-                        alertTrigger.addEventListener('click', () => {
-                            appendAlert('Tus informacion de cita se descargó!', 'success')
-                        })
-                    }
-                </script>
-            </div>
+            </div> -->
 
 
 
             <script src="../bootstrap/js/bootstrap.min.js"></script>
     </body>
+    <!-- Script para realizar un alert -->
+    <script>
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+        const appendAlert = (message, type) => {
+            const wrapper = document.createElement('div')
+            wrapper.innerHTML = [
+                `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                `   <div>${message}</div>`,
+                '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                '</div>'
+            ].join('')
+
+            alertPlaceholder.append(wrapper)
+        }
+
+        const alertTrigger = document.getElementById('liveAlertBtn')
+        if (alertTrigger) {
+            alertTrigger.addEventListener('click', () => {
+                appendAlert('Tus informacion de cita se descargó!', 'success')
+            })
+        }
+    </script>
 
     </html>
 

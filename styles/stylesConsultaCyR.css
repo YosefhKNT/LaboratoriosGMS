@@ -55,6 +55,8 @@ select {
   margin-bottom: 20px;
 }
 
+
+/* Para el FOMR */
 @media screen and (max-width: 1215px) {
   .form-container {
     width: 55%;

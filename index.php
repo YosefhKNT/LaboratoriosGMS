@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/stylesNav.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="Images/GMS-Logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -19,7 +20,7 @@
     <nav class="navbar navbar-expand-lg nav-custom" style="background-color: #3f51b5">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="index.php">
-                <img src="Images/GMS-Logo.png" alt="LogoGMS" width="60" height="24" class="d-inline-block align-text-top" />
+                <img src="Images/GMS-Logo1.png" alt="LogoGMS" width="60" height="24" class="d-inline-block align-text-top" />
                 Laboratorios GMS
             </a>
 
