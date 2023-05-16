@@ -104,7 +104,7 @@
         <p>Tu salud es nuestra prioridad</p>
     </div>
 
-    <div class="card text-center mx-5 p-5">
+    <!-- <div class="card text-center mx-5 p-5">
         <div class="card-body mx-5">
             <div class="mb-5">
                 <h2 class="card-title">Información general</h2>
@@ -130,8 +130,32 @@
                 <p class="card-text ">&copy; 2023 Laboratorio Clínico. Todos los derechos reservados.</p>
             </footer>
         </div>
-        <script src="bootstrap/js/bootstrap.min.js">
-        </script>
+    </div> -->
+
+    <div class="card text-center mx-5 p-5">
+        <div class="card-body mx-auto">
+            <div class="mb-5">
+                <h2 class="card-title">Información general</h2>
+                <p class="card-text mb-5">Somos un laboratorio clínico con más de 10 años de experiencia en el sector de la salud. Nos especializamos en la realización de pruebas clínicas y diagnóstico de enfermedades.</p>
+            </div>
+
+            <div class="row mision-vision">
+                <div class="col mision p-3 my-1">
+                    <h2 class="card-title">Misión</h2>
+                    <p class="card-text">Nuestra misión es proporcionar servicios de salud de calidad y confiables a nuestros pacientes.</p>
+                </div>
+                <div class="col vision p-3">
+                    <h2 class="card-title">Visión</h2>
+                    <p class="card-text">Nuestra visión es convertirnos en el laboratorio clínico líder en la región, reconocido por su excelencia y profesionalismo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="">
+        <p class="card-text">&copy; 2023 Laboratorio Clínico. Todos los derechos reservados.</p>
+    </footer>
+    <script src="bootstrap/js/bootstrap.min.js">
+    </script>
 </body>
 
 </html>

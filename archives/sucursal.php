@@ -50,7 +50,7 @@
                 <p><strong>Teléfono:</strong><br>(+52) 311-171-3322</p>
                 <p><strong>Horario:</strong><br>- Lunes a Sabado de 7:00 am a 3:00 pm,<br>- Sábados de 7:00 am a 1:00 pm
                 </p>
-                <p><strong>Correo electrónico:</strong><br>info@sucursalxyz.com</p>
+                <p><strong>Correo electrónico:</strong><br>genomicamoleculartepic@gmail.com</p>
             </div>
             <div class="section section-right" id="der">
                 <h2>Ubicación en el mapa</h2>
