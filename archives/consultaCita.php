@@ -20,7 +20,7 @@ if (isset($_POST['ConsultarCita'])) {
         header("Location: infoCitas.php");
     } else {
         // Inicio de sesión fallido
-        echo "Folio y/o clave incorrectos";
+        // echo "Folio y/o clave incorrectos";
     }
 }
 ?>
@@ -40,33 +40,67 @@ if (isset($_POST['ConsultarCita'])) {
     <?php
     include("../Plantillas/nav.html");
     ?>
-    <div class="contenedor" id="contene" onload="document.body.classList.add('animate__animated', 'animate__fadeInDown');">
+    <div class="contenedor" id="contene"">
 
 
         <!----------------------------------CONSULTA DE CITAS Y RESULTADOS------------------------------------>
         <div class="form-container" id="consulta_cita">
             <h1>Consulta de citas y resultados</h1>
 
-            <form action="" method="post" class="text-center mx-5">
+            <form class="text-center mx-5 needs-validation" novalidate action="#" method="post">
 
-                <div class=" form-floating mb-3">
-                    <input class="form-control form-control-lg" type="text" name="folio" placeholder="Folio">
+                <div class=" form-floating mb-5">
+                    <input class="form-control form-control-lg" type="text" name="folio" placeholder="Folio" pattern="[0-9]{1,100}" required>
                     <label for="Folio">Folio</label>
+                    <div class="valid-tooltip">
+                        Folio correcto
+                    </div>
+                    <div class="invalid-tooltip">
+                        Escriba su Folio (Solo numeros)
+                    </div>
                 </div>
 
-                <div class="form-floating mb-3">
-                    <input class="form-control form-control-lg" type="password" name="clave" placeholder="Clave">
+                <div class="form-floating mb-5">
+                    <input class="form-control form-control-lg" type="password" name="clave" placeholder="Clave" pattern="[0-9a-zA-Z]{8}" required>
                     <label for="Clave">Clave</label>
+                    <div class="valid-tooltip">
+                        Clave correcta
+                    </div>
+                    <div class="invalid-tooltip">
+                        Escriba su Clave (8 letras)
+                    </div>
                 </div>
 
                 <div class="text-center">
-                    <input class="form-control btn btn-primary p-3" type="submit" name="ConsultarCita" value="Buscar cita">
+                    <input class="btn btn-primary p-3" type="submit" name="ConsultarCita" value="Buscar cita">
                 </div>
             </form>
 
         </div>
 
     </div>
+    <!-- Tooltips -->
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
 </body>
 

@@ -67,8 +67,9 @@ if ($result->num_rows > 0) {
             </div>
         </nav>
 
-        <div id="myModal" class="modal">
-            <div class="modal-content">
+        <div id="myModal" class="modal px-5">
+            <div class="modal-content text-center p-5">
+                <button id="closeBtn" class="btn-close" aria-label="Close"></button>
                 <h2>¡Importante!</h2>
                 <p>Por favor, no olvides descargar tu informacion de cita y resultados.</p>
                 <form method='post' class="text-center">
@@ -85,19 +86,6 @@ if ($result->num_rows > 0) {
                 </form>
             </div>
         </div>
-
-        <script>
-            var modal = document.getElementById("myModal");
-            var btn = document.getElementById("myBtn");
-
-            window.onload = function() {
-                modal.style.display = "block";
-            }
-
-            btn.onclick = function() {
-                modal.style.display = "none";
-            }
-        </script>
 
         <div class="container-fluid px-5">
             <h1 class="text-center">Cita</h1>
@@ -164,42 +152,9 @@ if ($result->num_rows > 0) {
                 </div>
 
             </form>
-            <div class="container-fluid fixed-bottom bg-danger">
-                <div class="row m-2 justify-content-center align-items-center">
-                    <div class="col-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="white" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-                        </svg>
-                    </div>
-                    <div class="col-auto">
-                        <p class="texto text-center">
-                            No olvides descargar tus datos, será la única vez que se te dará tu <strong>"FOLIO" y "CLAVE"</strong>
-                        </p>
-                    </div>
-                </div>
-            </div>
+        </div>
 
-            <!-- =========================================================== -->
-            <!-- <div class="container-fluid text-center fixed-bottom bg-danger">
-
-                <div class="row m-5">
-                    <div class="col col-lg-1 float-end">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="white" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-                        </svg>
-                    </div>
-                    <div class="col">
-                        <p class="texto">
-                            No olvides descragar tu datos, será la unica vez que se te dará tu <strong>"FOLIO" y "CLAVE"</strong>
-                        </p>
-                    </div>
-                </div>
-
-            </div> -->
-
-
-
-            <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
     </body>
     <!-- Script para realizar un alert -->
     <script>
@@ -221,6 +176,26 @@ if ($result->num_rows > 0) {
             alertTrigger.addEventListener('click', () => {
                 appendAlert('Tus informacion de cita se descargó!', 'success')
             })
+        }
+    </script>
+
+    <!-- Modal Script -->
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var btnClose = document.getElementById("closeBtn");
+
+        window.onload = function() {
+            modal.style.display = "block";
+        }
+
+
+        btnClose.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        btn.onclick = function() {
+            modal.style.display = "none";
         }
     </script>
 

@@ -3,6 +3,13 @@ body {
 }
 
 /* Para el AVISO */
+.footerAviso {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
 .texto {
   font-size: 32px;
   color: #f1f1f1;
@@ -25,6 +32,12 @@ body {
   .texto {
     font-size: 16px;
   }
+}
+.btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
 }
 
 .modal {

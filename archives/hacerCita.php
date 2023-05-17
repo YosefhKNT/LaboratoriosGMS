@@ -75,7 +75,10 @@ if (isset($_POST['AgendarCita'])) {
             <form class="needs-validation" novalidate action="#" method="post" id="insertar_cita">
                 <!-- Input de nombre -->
                 <div class="form-floating mb-5">
-                    <input class="form-control form-control-lg" type="text" id="nombre" name="nombre" title="Por favor, ingrese un nombre válido (solo letras, espacios y acentos)" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{6,150}" placeholder="Nombre" required>
+                    <input class="form-control form-control-lg" type="text" id="nombre" name="nombre" 
+                    title="Por favor, ingrese un nombre válido (solo letras, espacios y acentos)" 
+                    pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{6,150}" 
+                    placeholder="Nombre" required>
                     <label for="nombre">Nombre</label>
                     <div class="valid-tooltip">
                         Correcto
@@ -87,7 +90,7 @@ if (isset($_POST['AgendarCita'])) {
 
                 <!-- input de telefono -->
                 <div class="form-floating mb-5">
-                    <input class="form-control form-control-lg" type="tel" id="telefono" name="telefono" title="Por favor, ingrese un numero válido (Solo a 10 digitos)" pattern="[0-9]{10,}" placeholder="123-456-7890" required>
+                    <input class="form-control form-control-lg" type="tel" id="telefono" name="telefono" title="Por favor, ingrese un numero válido (Solo a 10 digitos)" pattern="[0-9]{10}" placeholder="123-456-7890" required>
                     <label for="Telefono">Telefono</label>
                     <div class="valid-tooltip">
                         Correcto
@@ -182,7 +185,7 @@ if (isset($_POST['AgendarCita'])) {
         }
     </script>
 
-    <!-- Agrega el código JavaScript aquí -->
+    <!-- Tooltips -->
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (() => {
