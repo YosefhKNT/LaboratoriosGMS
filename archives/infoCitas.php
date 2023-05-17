@@ -50,7 +50,7 @@ if ($result->num_rows > 0) {
         <nav class="navbar navbar-expand-lg nav-custom" style="background-color: #3f51b5">
             <div class="container-fluid">
                 <a class="navbar-brand text-white" href="../index.php">
-                    <img src="../Images/GMS-Logo.png" alt="Logo" width="60" height="24" class="d-inline-block align-text-top" />
+                    <img src="../Images/GMS-Logo1.png" alt="Logo" width="60" height="24" class="d-inline-block align-text-top" />
                     Laboratorios GMS
                 </a>
 
@@ -67,6 +67,37 @@ if ($result->num_rows > 0) {
             </div>
         </nav>
 
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <h2>¡Importante!</h2>
+                <p>Por favor, no olvides descargar tu informacion de cita y resultados.</p>
+                <form method='post' class="text-center">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+
+                        <button class="btn btn-success btn-lg" id="myBtn" type='submit' name="pdf" value="Descargar PDF">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+                            </svg>
+                            Descargar mi información</button>
+                        <div id="liveAlertPlaceholder"></div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <script>
+            var modal = document.getElementById("myModal");
+            var btn = document.getElementById("myBtn");
+
+            window.onload = function() {
+                modal.style.display = "block";
+            }
+
+            btn.onclick = function() {
+                modal.style.display = "none";
+            }
+        </script>
 
         <div class="container-fluid px-5">
             <h1 class="text-center">Cita</h1>

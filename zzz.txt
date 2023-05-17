@@ -1,5 +1,9 @@
 Info del host de la Pagina
 
-Nombre: Laboratorio GMS
+Nombre: LaboratoriosGMS
 Pass :  !Knt_1478523690!
 
+BD Info: 
+Nombre:  LaboratoriosGMS
+Usuario: admin
+Pass:    LabGMS_1
