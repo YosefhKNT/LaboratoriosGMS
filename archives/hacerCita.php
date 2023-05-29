@@ -26,7 +26,7 @@ if (isset($_POST['AgendarCita'])) {
     if ($result) {
         // Cita agendada exitosamente
         $queryC = "SELECT * FROM citas 
-                  WHERE nombre='$nombre' AND clave='$clave' AND telefono='$telefono'";
+            WHERE nombre='$nombre' AND clave='$clave' AND telefono='$telefono'";
         $resultC = mysqli_query($conn, $queryC);
 
         if ($resultC) {

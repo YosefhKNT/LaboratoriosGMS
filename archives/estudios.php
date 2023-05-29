@@ -35,7 +35,7 @@
                 echo "<div class='flex-fill col-md-6 mb-3 '>";
                 echo "  <div class='card card-body align-top mb-3' style='background-color: #ffffff; height: 100%;'>";
                 echo "      <div class='container text-center' style='width: auto; height:200px;'>";
-                echo "          <img class='estudio img-fluid' src='estudios_img/" . $fila_estudios["ruta_imagen"] . "' alt='Imagen " . $fila_estudios["id"] . "' />";
+                echo "          <img class='estudio img-fluid' src='" . $fila_estudios["ruta_imagen"] . "' alt='Imagen " . $fila_estudios["id"] . "' />";
                 echo "      </div>";
                 echo "      <h2 class='align-top'>" . $fila_estudios["estudio"] . "</h2>";
                 echo "      <p style='text-align: justify;'>" . $fila_estudios["descripcion"] . "</p>";
