@@ -73,31 +73,38 @@ if ($result->num_rows > 0) {
             </div>
         </nav>
 
-        <div id="myModal" class="modal px-5">
-            <div class="modal-content text-center p-5">
-                <button id="closeBtn" class="btn-close" aria-label="Close"></button>
-                <h2>¡Importante!</h2>
-                <p>Por favor, no olvides descargar tu informacion de cita y resultados.</p>
-                <form method='post' class="text-center">
-                    <div class="d-grid gap-2 col-6 mx-auto">
+        <?php
+        if (isset($_SESSION['modal'])) {
+            echo "
+                <div id='myModal' class='modal px-5'>
+                    <div class='modal-content text-center p-5'>
+                        <button id='closeBtn' class='btn-close' aria-label='Close'></button>
+                        <h2>¡Importante!</h2>
+                        <p>Por favor, no olvides descargar tu informacion de cita y resultados.</p>
+                        <form method='post' class='text-center'>
+                            <div class='d-grid gap-2 col-6 mx-auto'>
 
-                        <button class="btn btn-success btn-lg" id="myBtn" type='submit' name="pdf" value="Descargar PDF">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
-                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
-                            </svg>
-                            Descargar mi información</button>
-                        <div id="liveAlertPlaceholder"></div>
+                                <button class='btn btn-success btn-lg' id='myBtn' type='submit' name='pdf' value='Descargar PDF'>
+                                    <svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='currentColor' class='bi bi-arrow-down-circle-fill' viewBox='0 0 16 16'>
+                                        <path d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z' />
+                                    </svg>
+                                    Descargar mi información</button>
+                                <div id='liveAlertPlaceholder'></div>
+                            </div>
+
+                        </form>
                     </div>
+                </div>";
+        }
+        ?>
 
-                </form>
-            </div>
-        </div>
+
 
         <div class="container-fluid px-5">
             <h1 class="text-center fw-bold py-3">Informacion de su Cita</h1>
             <!-- 
             Agendada: #ADD8E6 o #90EE90
-            Pendiente: #FFFF00 o #FFA500
+            Pendiente de resultados: #FFFF00 o #FFA500
             Completada: #008000 o #000080
             Cancelada: #FF0000 o #808080
             No se presentó: #8B0000 o #000000 
@@ -110,7 +117,7 @@ if ($result->num_rows > 0) {
                         $status = $row['estatus'];
                         if ($status == "Agendada") {
                             echo "<strong class='bg-primary text-center rounded px-2 py-1' style='color: #fefefe;'> " . $status . "</strong>";
-                        } else if ($status == "Pendiente") {
+                        } else if ($status == "Pendiente de resultados") {
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #000; background-color: #FFFF00;'> " . $status . " </strong>";
                         } else if ($status == "Completada") {
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #fff; background-color: #008000;'> " . $status . " </strong>";
@@ -118,7 +125,7 @@ if ($result->num_rows > 0) {
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #fefefe; background-color: #FF0000;'> " . $status . " </strong>";
                         } else if ($status == "No se presentó") {
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #fefefe; background-color: #8B0000;'> " . $status . " </strong>";
-                        } else {
+                        }else{
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #fefefe; background-color: #000;'>Sin Estatus</strong";
                         }
                     ?>

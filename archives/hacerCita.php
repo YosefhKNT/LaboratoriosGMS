@@ -36,8 +36,8 @@ if (isset($_POST['AgendarCita'])) {
             // Inicio de sesión exitoso
             session_start();
             $_SESSION['folio'] = $row['id'];
+            $_SESSION['modal'] = "Mostrar Mensaje";
             header("Location: ../archives/infoCitas.php");
-            //header("Location: descargaEstudios.php");
         } else {
             echo "Se ha genrado un error al acceder a la cita";
         }
@@ -75,10 +75,7 @@ if (isset($_POST['AgendarCita'])) {
             <form class="needs-validation" novalidate action="#" method="post" id="insertar_cita">
                 <!-- Input de nombre -->
                 <div class="form-floating mb-5">
-                    <input class="form-control form-control-lg" type="text" id="nombre" name="nombre" 
-                    title="Por favor, ingrese un nombre válido (solo letras, espacios y acentos)" 
-                    pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{6,150}" 
-                    placeholder="Nombre" required>
+                    <input class="form-control form-control-lg" type="text" id="nombre" name="nombre" title="Por favor, ingrese un nombre válido (solo letras, espacios y acentos)" pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{6,150}" placeholder="Nombre" required>
                     <label for="nombre">Nombre</label>
                     <div class="valid-tooltip">
                         Correcto
