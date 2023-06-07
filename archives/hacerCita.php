@@ -147,20 +147,19 @@ if (isset($_POST['AgendarCita'])) {
                         Elija el estudio
                     </div>
                 </div>
-                <input type="hidden">
                 <input type="hidden" name="laboratorista" id="laboratorista" placeholder="Laboratorista" readonly>
                 <!-- Boton -->
                 <div class="text-center">
                     <input class="btn btn-primary" style="width: 100%;" type="submit" name="AgendarCita" value="Enviar solicitud">
                 </div>
-                <div id="liveAlertPlaceholder"></div>
+                <!-- <div id="liveAlertPlaceholder"></div> -->
             </form>
 
         </div>
     </div>
 
     <!-- Script del Alert -->
-    <script>
+    <!-- <script>
         const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
         const appendAlert = (message, type) => {
             const wrapper = document.createElement('div')
@@ -180,7 +179,7 @@ if (isset($_POST['AgendarCita'])) {
                 appendAlert('Tus informacion de cita se descargó!', 'success')
             })
         }
-    </script>
+    </script> -->
 
     <!-- Tooltips -->
     <script>

@@ -102,13 +102,6 @@ if ($result->num_rows > 0) {
 
         <div class="container-fluid px-5">
             <h1 class="text-center fw-bold py-3">Informacion de su Cita</h1>
-            <!-- 
-            Agendada: #ADD8E6 o #90EE90
-            Pendiente de resultados: #FFFF00 o #FFA500
-            Completada: #008000 o #000080
-            Cancelada: #FF0000 o #808080
-            No se presentó: #8B0000 o #000000 
-            -->
             <div class="container-fluid text-end pt-3">
                 <div style="width: auto;">
                     <strong>Status: </strong>
@@ -125,7 +118,7 @@ if ($result->num_rows > 0) {
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #fefefe; background-color: #FF0000;'> " . $status . " </strong>";
                         } else if ($status == "No se presentó") {
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #fefefe; background-color: #8B0000;'> " . $status . " </strong>";
-                        }else{
+                        } else {
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #fefefe; background-color: #000;'>Sin Estatus</strong";
                         }
                     ?>
@@ -151,6 +144,23 @@ if ($result->num_rows > 0) {
                         $area = $row['area'];
                         $estudio = $row['estudio'];
                         $resultados = $row['resultados'];
+
+                        $estado_btnEditar = '';
+                        $estado_btnCancelar = '';
+                        switch ($status) {
+                            case "Pendiente de resultados":
+                            case "Completada":
+                            case "Cancelada":
+                            case "No se presentó":
+                                $estado_btnEditar = 'disabled';
+                                $estado_btnCancelar = 'disabled';
+                                break;
+                            case "Agendada":
+                            default:
+                                $estado_btnEditar = '';
+                                $estado_btnCancelar = '';
+                                break;
+                        }
 
                         echo "<tr>";
                         echo "<td><center>" . $row['id'] . "</center></td>";
@@ -199,7 +209,7 @@ if ($result->num_rows > 0) {
                     <div class="col-md">
                         <form method='post' action="editarCita.php">
                             <div class="row row-auto px-1">
-                                <button class="btn btn-warning btn-lg" type='submit' name="editarCita" value="Editar Cita">
+                                <button <?php echo $estado_btnEditar; ?> class="btn btn-warning btn-lg" type='submit' name="editarCita" value="Editar Cita">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
@@ -213,7 +223,7 @@ if ($result->num_rows > 0) {
                     <div class="col-md">
                         <form method='' class="">
                             <div class="row row-auto px-1">
-                                <button class="btn btn-danger btn-lg" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" name="cancelarCita" value="Cancelar Cita">
+                                <button <?php echo $estado_btnCancelar; ?> class="btn btn-danger btn-lg" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" name="cancelarCita" value="Cancelar Cita">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
                                     </svg>
