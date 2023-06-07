@@ -3,20 +3,23 @@
 
 <head>
     <title>GMS | COVID-19</title>
-    <link rel="stylesheet" type="text/css" href="../styles/stylesCovid.css"> 
+    <link rel="stylesheet" type="text/css" href="../styles/stylesCovid.css">
     <?php include("../Plantillas/head.html");    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
+    <!-- barra de navegacion -->
     <nav>
+
         <?php include("../Plantillas/nav.html");
         ?>
     </nav>
-    <div class="container"> <!-- <div class="header">            <h1>COVID-19</h1>        </div> -->
+    <div class="container">
         <div class="image"> <img src="https://th.bing.com/th/id/R.6b769be9ae1e64bb386cf6edc7567972?rik=Fw4IiptsyB4ahg&riu=http%3a%2f%2faustintexas.gov%2fsites%2fdefault%2ffiles%2fCOVID-19gfx_1.png&ehk=bkaKTVEmIBugjQfa08GMxmNF3juAsuZmVMGUdOd1Ymw%3d&risl=&pid=ImgRaw&r=0" alt="Imagen del COVID-19"> </div>
         <main>
+            <!-- cards con informacion del covid -->
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="covid col-md-4"> <img src="covid-img\covid19.jpeg" class="covid covid rounded-start" alt="..."> </div>

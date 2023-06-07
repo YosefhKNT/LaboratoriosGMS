@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- api para el mapa -->
     <!-- AIzaSyDh7_U5Oil-vfWGvBLWufa1J0YvwTKoNlk -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh7_U5Oil-vfWGvBLWufa1J0YvwTKoNlk"></script>
     <script>
@@ -38,7 +39,7 @@
     <?php
     include("../Plantillas/nav.html");
     ?>
-
+    <!-- INFORMACION DE LA EMPRESA -->
     <header>
         <h1>Sucursal "Villa San Angel"</h1>
     </header>
@@ -60,6 +61,7 @@
             </div>
         </div>
     </main>
+    <!-- Pie de pagina -->
     <footer class="fixed-bottom">
         <p>&copy; 2023, Sucursales GMS</p>
     </footer>

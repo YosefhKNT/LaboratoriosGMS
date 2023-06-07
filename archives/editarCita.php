@@ -136,12 +136,6 @@ if (isset($_POST['modificarCita'])) {
                                     // Eliminar el event listener después de ejecutar buscarHoras()
                                     document.getElementById("horaCita").removeEventListener("click", ejecutarBuscarHoras);
                                 }
-
-                                // Obtener referencia al select
-                                //var select = document.getElementById("horaCita");
-
-                                // Escuchar el evento click del select
-                                //select.addEventListener("change", ejecutarBuscarHoras);
                             </script>
 
                         </div>

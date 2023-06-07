@@ -51,7 +51,7 @@
             </div>
         </div>
     </nav>
-
+<!-- Carrousel de imagenes -->
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -99,39 +99,14 @@
         </button>
     </div>
 
+    <!-- Card con la informacion general -->
     <div class="card-header text-center m-5">
         <h1>Laboratorio Clínico</h1>
         <p>Tu salud es nuestra prioridad</p>
     </div>
 
-    <!-- <div class="card text-center mx-5 p-5">
-        <div class="card-body mx-5">
-            <div class="mb-5">
-                <h2 class="card-title">Información general</h2>
-                <p class="card-text mb-5">Somos un laboratorio clínico con más de 10 años de experiencia en el sector de
-                    la salud. Nos especializamos en la realización de pruebas clínicas y diagnóstico de enfermedades.
-                </p>
-            </div>
 
-            <div class="mision-vision">
-                <div class="mision">
-                    <h2 class="card-title">Misión</h2>
-                    <p class="card-text ">Nuestra misión es proporcionar servicios de salud de calidad y confiables a
-                        nuestros pacientes.</p>
-                </div>
-                <div class="vision">
-                    <h2 class="card-title">Visión</h2>
-                    <p class="card-text ">Nuestra visión es convertirnos en el laboratorio clínico líder en la región,
-                        reconocido por su excelencia y profesionalismo.</p>
-                </div>
-            </div>
-
-            <footer class="fixed-bottom">
-                <p class="card-text ">&copy; 2023 Laboratorio Clínico. Todos los derechos reservados.</p>
-            </footer>
-        </div>
-    </div> -->
-
+    <!-- Cards con la vision y mision -->
     <div class="card text-center mx-5 p-5">
         <div class="card-body mx-auto">
             <div class="mb-5">
@@ -151,6 +126,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Pie de pagina -->
     <footer class="">
         <p class="card-text">&copy; 2023 Laboratorio Clínico. Todos los derechos reservados.</p>
     </footer>

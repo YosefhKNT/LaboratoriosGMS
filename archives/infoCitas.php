@@ -4,11 +4,12 @@ require('../tcpdf/fpdf.php');
 
 session_start();
 
-
+// verifica si esta la sesion de la consulta de la cita
 if (!isset($_SESSION['folio'])) {
     header("Location: consultaCita.php");
 }
 
+// verifica si la sesion de la edicion de la ciat esta puesta
 if (isset($_POST['editarCita'])) {
     header("Location: editarCita.php");
 }
@@ -53,6 +54,7 @@ if ($result->num_rows > 0) {
     </head>
 
     <body>
+        <!-- barra de navegacion -->
         <nav class="navbar navbar-expand-lg nav-custom" style="background-color: #3f51b5">
             <div class="container-fluid">
                 <a class="navbar-brand text-white" href="../index.php">
@@ -73,6 +75,7 @@ if ($result->num_rows > 0) {
             </div>
         </nav>
 
+        <!-- Mensaje de descargar el doc si se agenda la cita -->
         <?php
         if (isset($_SESSION['modal'])) {
             echo "
@@ -106,11 +109,12 @@ if ($result->num_rows > 0) {
                 <div style="width: auto;">
                     <strong>Status: </strong>
                     <?php
+                    // condicion que valida los status
                     while ($row = mysqli_fetch_assoc($result)) {
                         $status = $row['estatus'];
                         if ($status == "Agendada") {
                             echo "<strong class='bg-primary text-center rounded px-2 py-1' style='color: #fefefe;'> " . $status . "</strong>";
-                        } else if ($status == "Pendiente de resultados") {
+                        } else if ($status == "A la espera de resultados") {
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #000; background-color: #FFFF00;'> " . $status . " </strong>";
                         } else if ($status == "Completada") {
                             echo "<strong class='text-center rounded px-2 py-1' style='color: #fff; background-color: #008000;'> " . $status . " </strong>";

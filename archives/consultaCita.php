@@ -28,6 +28,7 @@ if (isset($_POST['ConsultarCita'])) {
 <html>
 
 <head>
+    <!-- Estilos y scripts -->
     <title>GMS | Consultar</title>
     <link rel="stylesheet" type="text/css" href="../styles/stylesConsultaCyR.css">
     <link rel="stylesheet" type="text/css" href="../styles/stylesNav.css">
@@ -37,6 +38,7 @@ if (isset($_POST['ConsultarCita'])) {
 </head>
 
 <body>
+    <!-- barra de navegacion -->
     <?php
     include("../Plantillas/nav.html");
     ?>
@@ -48,7 +50,7 @@ if (isset($_POST['ConsultarCita'])) {
         <h1>Consulta de citas y resultados</h1>
 
         <form class="text-center mx-5 needs-validation" novalidate action="#" method="post">
-
+            <!-- campos del formulario -->
             <div class=" form-floating mb-5">
                 <input class="form-control form-control-lg" type="text" name="folio" placeholder="Folio" pattern="[0-9]{1,100}" required>
                 <label for="Folio">Folio</label>
@@ -70,7 +72,7 @@ if (isset($_POST['ConsultarCita'])) {
                     Escriba su Clave (8 letras)
                 </div>
             </div>
-
+            <!-- boton que envia formulario -->
             <div class="text-center">
                 <input class="btn btn-primary p-3" type="submit" name="ConsultarCita" value="Buscar cita">
             </div>
@@ -89,6 +91,7 @@ if (isset($_POST['ConsultarCita'])) {
     </script>';
     }
     ?>
+    <!-- Mensaje de cita no encontrada -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -107,7 +110,7 @@ if (isset($_POST['ConsultarCita'])) {
     </div>
 
     </div>
-    <!-- Tooltips -->
+    <!-- Tooltips para la validacion de los campos -->
     <script>
         (() => {
             'use strict'

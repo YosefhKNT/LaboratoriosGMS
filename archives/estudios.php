@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <!-- barra de navegacion -->
     <?php
     include("../Plantillas/nav.html");
     ?>
